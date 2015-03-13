@@ -3,8 +3,6 @@
 
 var users = (function(module){
 
-  // var user_path = 'https://agile-thicket-8420.herokuapp.com/users';
-
   module.init = function(){
     module.$container = $('#container');
     module.$userShowTemplate = $('#userShowTemplate');
@@ -17,12 +15,11 @@ var users = (function(module){
 
 var tournaments = (function(module){
 
-  var tournament_path = 'https://agile-thicket-8420.herokuapp.com/tournaments';
-
   module.init = function(){
-    module.container = $('#container');
+    module.$container = $('#container');
+    module.$allTournamentsTemplate = $('#allTournamentsTemplate')
     module.list = $('ul#tourney-list');
-    tournament_path;
+    module.tournaments_path = 'https://agile-thicket-8420.herokuapp.com/tournaments';
   };
 
   return module
