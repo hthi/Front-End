@@ -3,7 +3,11 @@
 
 var users = (function(module){
 
-  return module
+  module.sign_out = function(){
+    localStorage.authToken = '';
+  };
+
+  return module;
 
 })(users || {});
 
