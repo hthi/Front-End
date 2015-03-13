@@ -17,12 +17,6 @@ var users = (function(module){
     }));
   };
 
-
-
-
-
-
-
   return module
 
 })(users || {});

@@ -33,6 +33,7 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -63,14 +64,16 @@
         </div>
     </script>
 
-    <script type='text/x-handlebars-template' id='tournamentIndexTemplate'>
-    {{#each tournaments}}
-      <div>
-        <h3><a href='?tournament={{id}}'>{{question}}</a></h3>
-        <li>Status: {{status}}</li>
-        <li>Number of Comments: {{comments.length}}</li>
+    <script type='text/x-handlebars-template' id='allTournamentsTemplate'>
+      <div id='all-tournaments'>
+        <ul>
+          {{#each tournaments}}
+            <h3><a href='?tournament={{id}}'>{{question}}</a></h3>
+            <li>Status: {{status}}</li>
+            <li>Number of Comments: {{comments.length}}</li>
+          {{/each}}
+        </ul>
       </div>
-    {{/each}}
     </script>
   </body>
 </html>
