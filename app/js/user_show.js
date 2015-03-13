@@ -3,6 +3,26 @@
 
 var users = (function(module){
 
+  module.show_user_page = function(){
+    users.$container.empty();
+    $.ajax({
+      url: module.user_path + "/" + environment.getParams()
+    }).done(module.render).fail();
+  };
+
+  module.render = function(response){
+    var template = Handlebars.compile(module.$userShowTemplate.html());
+    module.$container.html(template({
+      user: response
+    }));
+  };
+
+
+
+
+
+
+
   return module
 
 })(users || {});

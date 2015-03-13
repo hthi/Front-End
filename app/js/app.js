@@ -3,10 +3,12 @@
 
 var users = (function(module){
 
-  var user_path = 'https://agile-thicket-8420.herokuapp.com/users';
+  // var user_path = 'https://agile-thicket-8420.herokuapp.com/users';
 
   module.init = function(){
-
+    module.$container = $('#container');
+    module.$userShowTemplate = $('#userShowTemplate');
+    module.user_path = 'https://agile-thicket-8420.herokuapp.com/users';
   };
 
   return module
@@ -39,6 +41,19 @@ var images = (function(module){
   return module
 
 })(images || {});
+
+var environment = (function(module){
+
+  module.getParams = function(){
+    var params = window.location.search;
+    var re = /\d+/;
+    return re.exec(params)[0];
+  };
+
+
+  return module
+
+})(environment || {});
 
 $(document).ready(function(){
   users.init();
