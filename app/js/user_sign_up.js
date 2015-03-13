@@ -22,9 +22,9 @@ var users = (function(module){
   return false;
 };
 
-  module.loginSuccess = function(userData) {
+  module.signUpSuccess = function(userData) {
     localStorage.setItem('authToken', userData.token);
-    console.log('logged in!');
+    console.log('signed up!');
     window.location.href = '/';
   };
 
