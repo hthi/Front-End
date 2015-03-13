@@ -33,6 +33,6 @@ var users = (function(module){
 })(users || {});
 
 $(document).ready(function(){
-  $('form#registration-form').on('submit',Pixelect.submitRegistration);
+  $('form#registration-form').on('submit',users.submitRegistration);
 });
 

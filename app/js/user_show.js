@@ -15,6 +15,10 @@ var users = (function(module){
     module.$container.html(template({
       user: response
     }));
+    var template2 = Handlebars.compile($('#allTournamentsTemplate').html());
+    $('#tournaments-container').html(template2({
+      tournaments: response.tournaments
+    }));
   };
 
   return module
