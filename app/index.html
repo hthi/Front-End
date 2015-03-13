@@ -32,6 +32,7 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -54,5 +55,23 @@
     <script src="js/comment_create.js" type="text/javascript"></script>
     <script src="js/comment_update.js" type="text/javascript"></script>
     <!-- endbuild -->
+
+    <script type='text/x-handlebars-template' id='homeTemplate'>
+        <div id='userInfo'>
+          <h2>{{user.name}}</h2>
+          <h3>{{user.email}}</h3>
+          <ul>
+            {{#each user.tournaments}}
+              <li><a href='?tournament={{id}}'>{{question}}</a></li>
+              <li>{{status}}</li>
+              <li>{{comments.length}}</li>
+            {{/each}}
+          </ul>
+        </div>
+    </script>
+
+
+
+
   </body>
 </html>
