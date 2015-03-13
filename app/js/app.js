@@ -1,25 +1,47 @@
+/*global $:false */
 'use strict';
 
-var trace = function(){
-  for(var i = 0; i < arguments.length; i++){
-    console.log(arguments[i]);
-  }
-};
+var users = (function(module){
 
-var App = App || {};
+  var user_path = 'https://agile-thicket-8420.herokuapp.com/users';
 
-App.square = function(x){
-  return x * x
-};
+  module.init = function(){
 
-App.cube = function(x){
-  return x * x * x
-};
+  };
 
-App.greet = function(string){
-  return string = typeof string !== 'undefined' ? 'Hello ' + string : "Hello World";
-};
+  return module
+
+})(users || {});
+
+var tournaments = (function(module){
+
+  var tournament_path = 'https://agile-thicket-8420.herokuapp.com/tournaments';
+
+  module.init = function(){
+    module.container = $('#container');
+    module.list = $('ul#tourney-list');
+    tournament_path;
+  };
+
+  return module
+
+})(tournaments || {});
+
+var images = (function(module){
+
+  var images_path = 'https://agile-thicket-8420.herokuapp.com/images';
+  var tournament_path = 'https://agile-thicket-8420.herokuapp.com/tournaments'
+
+  module.init = function(){
+
+  };
+
+  return module
+
+})(images || {});
 
 $(document).ready(function(){
-  trace('hello world');
+  users.init();
+  tournaments.init();
+  images.init();
 });
