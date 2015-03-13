@@ -3,6 +3,13 @@
 
 var users = (function(module){
 
+  module.findUser = function(){
+    if (localStorage.authToken){
+      module.authToken = localStorage.authToken;
+    }
+
+  };
+
   module.show_user_page = function(){
     users.$container.empty();
     $.ajax({
