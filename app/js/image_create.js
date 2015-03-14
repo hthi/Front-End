@@ -26,9 +26,24 @@ var images = (function(module){
     var s3 = new AWS.S3();
     var params = {Bucket: module.bucket, Key: module.key};
     s3.getSignedUrl('getObject', params, function(err, url){
-      console.log(url);
+      module.createImage(url);
     });
 
+  };
+
+  module.createImage = function(link){
+    $.ajax({
+      url: module.images_path,
+      type: 'POST',
+      data:{
+        image:{
+          url: link,
+          tournament_id: 1
+        }
+      }
+    }).done(function(data){
+      console.log(data);
+    }).fail();
   };
 
 
