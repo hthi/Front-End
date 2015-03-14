@@ -48,7 +48,7 @@ var users = (function(module){
     }));
   };
 
-  return module
+  return module;
 
 })(users || {});
 
