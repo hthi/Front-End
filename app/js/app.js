@@ -17,7 +17,7 @@ var tournaments = (function(module){
 
   module.init = function(){
     module.$container = $('#container');
-    module.$allTournamentsTemplate = $('#allTournamentsTemplate')
+    module.$allTournamentsTemplate = $('#allTournamentsTemplate');
     module.list = $('ul#tourney-list');
     module.tournaments_path = 'https://agile-thicket-8420.herokuapp.com/tournaments';
   };
@@ -28,8 +28,8 @@ var tournaments = (function(module){
 
 var images = (function(module){
 
-  var images_path = 'https://agile-thicket-8420.herokuapp.com/images';
-  var tournament_path = 'https://agile-thicket-8420.herokuapp.com/tournaments'
+  module.images_path = 'https://agile-thicket-8420.herokuapp.com/images';
+  module.tournament_path = 'https://agile-thicket-8420.herokuapp.com/tournaments';
 
   module.init = function(){
 
