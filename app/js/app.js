@@ -41,6 +41,8 @@ var images = (function(module){
 
 var environment = (function(module){
 
+  module.host = 'https://agile-thicket-8420.herokuapp.com/';
+
   module.getParams = function(){
     var params = window.location.search;
     var re = /\d+/;
