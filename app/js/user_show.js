@@ -33,7 +33,8 @@ var users = (function(module){
     $.ajax({
         url: module.user_path + "/" + data.id
       }).done(function(response){
-        module.render(response)
+        module.render(response);
+        module.setupAjaxRequests();
       }).fail();
   };
 
