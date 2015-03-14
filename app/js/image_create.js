@@ -18,6 +18,9 @@ var images = (function(module){
     module.key = data.key;
     module.bucket = data.bucket;
     module.signature = data.signature;
+    module.acl = data.acl;
+    module.policy = data.policy;
+    module.sas = data.sas;
   };
 
   module.getUrl = function(data){
@@ -27,6 +30,7 @@ var images = (function(module){
     var params = {Bucket: module.bucket, Key: module.key};
     s3.getSignedUrl('getObject', params, function(err, url){
       module.createImage(url);
+      module.uploadImage(url);
     });
 
   };
@@ -44,6 +48,38 @@ var images = (function(module){
     }).done(function(data){
       console.log(data);
     }).fail();
+  };
+
+  module.uploadImage = function(link){
+    $.ajax({
+      url: 'https://my-pixelect-bucket.s3.amazonaws.com/',
+      type: 'POST',
+      formdata:{
+        key: "/" + module.key + "/" + $('#amazonfile').val(),
+        AWSAccessKeyId: module.access_key,
+        acl: module.acl,
+        policy: module.policy,
+        signature: module.signature,
+        success_action_status: module.sas
+      }
+    }).done(function(data){
+      console.log(data);
+    }).fail(function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+      console.log(errorThrown);
+    });
+    // $.ajax({
+    //   url: link,
+    //   type: 'POST',
+    //   data:{
+    //     file: $('#amazonfile').val()
+    //   }
+    // }).done(function(data){
+    //   console.log(data);
+    // }).fail(function(jqXHR, textStatus, errorThrown){
+    //   console.log(textStatus);
+    //   console.log(errorThrown);
+    // });
   };
 
 
