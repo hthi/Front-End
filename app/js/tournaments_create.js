@@ -8,14 +8,22 @@ var tournaments = (function(module){
     var template = Handlebars.compile($('#newTournamentTemplate').html());
     $('#container').html(template());
     module.renderHidden();
+    $('#newTournamentForm').submit(module.submitTournament);
+
   };
 
   module.renderHidden = function(){
     images.getImageKey(images.buildObject);
   };
 
-  module.submitTournament = function(e){
-    e.preventDefault();
+  module.submitTournament = function(event){
+    event.preventDefault();
+    $('.uploadForm').each(function(i){
+      setTimeout(function(){
+        $('.uploadForm')[i].submit();
+        console.log(i);
+      }, i*1000);
+    });
   };
 
   return module;
