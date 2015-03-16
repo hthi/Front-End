@@ -18,9 +18,11 @@ var tournaments = (function(module){
 
   module.submitTournament = function(event){
     event.preventDefault();
-    $('.uploadForm').each(function(i){
+    var $uploadForm = $('.uploadForm');
+    $uploadForm.splice($uploadForm.length-1);
+    $uploadForm.each(function(i){
       setTimeout(function(){
-        $('.uploadForm')[i].submit();
+        $uploadForm[i].submit();
         console.log(i);
       }, i*1000);
     });
