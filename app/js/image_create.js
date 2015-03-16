@@ -32,6 +32,12 @@ var images = (function(module){
     $('#imgContainer').html(templ({
       imageHeader: thing
     }));
+    $('#uploadForm').on('submit', function(e){
+      e.preventDefault();
+      this.submit();
+      images.createImage();
+      $(this).replaceWith($(this).clone());
+    })
   };
 
   module.amazonParse = function(data){
@@ -68,13 +74,13 @@ var images = (function(module){
   //   });
   // };
 
-  module.createImage = function(link){
+  module.createImage = function(){
     $.ajax({
       url: module.images_path,
-      type: 'PUT',
+      type: 'POST',
       data:{
         image:{
-          url: link,
+          url: 'https://s3.amazonaws.com/my-pixelect-bucket/' + module.key,
           tournament_id: 1
         }
       }
