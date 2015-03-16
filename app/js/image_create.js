@@ -9,8 +9,29 @@ var images = (function(module){
       type: 'GET'
     }).done(function(data){
       // console.log(data.key);
-      module.getUrl(data);
+      // module.getUrl(data);
+      // module.getObject(data);
+      module.createObject(data);
      }).fail();
+  };
+
+  module.createObject = function(data){
+    module.amazonParse(data);
+    var thing = {
+      key: module.key,
+      access_key: module.access_key,
+      policy: module.policy,
+      signature: module.signature
+    };
+    module.renderTemp(thing);
+  };
+
+  module.renderTemp = function(thing){
+    AWS.config.update({accessKeyId: module.access_key, secretAccessKey: module.signature, region: 'us-east-1'});
+    var templ = Handlebars.compile($('#imageHeaderTemplate').html());
+    $('#imgContainer').html(templ({
+      imageHeader: thing
+    }));
   };
 
   module.amazonParse = function(data){
@@ -28,17 +49,29 @@ var images = (function(module){
     AWS.config.update({accessKeyId: module.access_key, secretAccessKey: module.signature, region: 'us-east-1'});
     var s3 = new AWS.S3();
     var params = {Bucket: module.bucket, Key: module.key};
-    s3.getSignedUrl('getObject', params, function(err, url){
+    s3.getSignedUrl('putObject', params, function(err, url){
       module.createImage(url);
       module.uploadImage(url);
     });
 
   };
 
+  // module.getObject = function(data){
+  //   module.amazonParse(data);
+  //   AWS.config.update({accessKeyId: module.access_key, secretAccessKey: module.signature, region: 'us-east-1'});
+  //   new AWS.S3().listObjects({Bucket: module.bucket}, function(error, data) {
+  //     if (error) {
+  //       console.log(error); // an error occurred
+  //     } else {
+  //       console.log(data); // request succeeded
+  //     }
+  //   });
+  // };
+
   module.createImage = function(link){
     $.ajax({
       url: module.images_path,
-      type: 'POST',
+      type: 'PUT',
       data:{
         image:{
           url: link,
@@ -53,7 +86,7 @@ var images = (function(module){
   module.uploadImage = function(link){
     $.ajax({
       url: 'https://my-pixelect-bucket.s3.amazonaws.com/',
-      type: 'POST',
+      type: 'PUT',
       formdata:{
         key: "/" + module.key + "/" + $('#amazonfile').val(),
         AWSAccessKeyId: module.access_key,
@@ -70,9 +103,14 @@ var images = (function(module){
     });
     // $.ajax({
     //   url: link,
-    //   type: 'POST',
-    //   data:{
-    //     file: $('#amazonfile').val()
+    //   type: 'PUT',
+    //   formdata:{
+    //     key: "/" + $('#amazonfile').val(),
+    //     AWSAccessKeyId: module.access_key,
+    //     acl: module.acl,
+    //     policy: module.policy,
+    //     signature: module.signature,
+    //     success_action_status: module.sas
     //   }
     // }).done(function(data){
     //   console.log(data);
