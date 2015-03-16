@@ -83,9 +83,9 @@
     <script type='text/x-handlebars-template' id='newTournamentTemplate'>
         <div id='newTournament'>
           <form id='newTournamentForm'>
-            <label for='question'>Question<label>
-            <input type='text' id='question'>
-            <input type='submit'>
+            <label for='question'>Question</label>
+            <input type='text' id='question'/>
+            <input type='submit'/>
           </form>
             <ul id='fileList'></ul>
             <div id='secretContainer'></div>
@@ -95,12 +95,12 @@
     <script type="text/x-handlebars-template" id="imageHeaderTemplate">
       <div class="imageHeader">
         <form class='uploadForm' action='https://s3.amazonaws.com/my-pixelect-bucket', method='post' enctype='multipart/form-data'>
-          <input type="hidden" name="key" value="{{imageHeader.key}}">
-          <input type="hidden" name="AWSAccessKeyId" value="{{imageHeader.access_key}}">
-          <input type="hidden" name="policy" value="{{imageHeader.policy}}">
-          <input type="hidden" name="signature" value="{{imageHeader.signature}}">
-          <input type="hidden" name="Content-Type" value="image/jpeg">
-          <input class='file' name="file" type="file">
+          <input type="text" name="key" value="{{imageHeader.key}}"/>
+          <input type="hidden" name="AWSAccessKeyId" value="{{imageHeader.access_key}}"/>
+          <input type="hidden" name="policy" value="{{imageHeader.policy}}"/>
+          <input type="hidden" name="signature" value="{{imageHeader.signature}}"/>
+          <input type="hidden" name="Content-Type" value="image/jpeg"/>
+          <input class='file' name="file" type="file"/>
         </form>
       </div>
     </script>
