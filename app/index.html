@@ -95,7 +95,7 @@
     <script type="text/x-handlebars-template" id="imageHeaderTemplate">
       <div class="imageHeader">
         <form class='uploadForm' action='https://s3.amazonaws.com/my-pixelect-bucket', method='post' enctype='multipart/form-data'>
-          <input type="text" name="key" value="{{imageHeader.key}}"/>
+          <input class='imageKey' type="text" name="key" value="{{imageHeader.key}}"/>
           <input type="hidden" name="AWSAccessKeyId" value="{{imageHeader.access_key}}"/>
           <input type="hidden" name="policy" value="{{imageHeader.policy}}"/>
           <input type="hidden" name="signature" value="{{imageHeader.signature}}"/>
