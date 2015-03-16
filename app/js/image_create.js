@@ -3,19 +3,14 @@
 
 var images = (function(module){
 
-  module.getAmazonJson = function(){
-    $.ajax({
+  module.getImageKey = function(callback){
+     $.ajax({
       url: environment.host + '/amazon/sign_key',
       type: 'GET'
-    }).done(function(data){
-      // console.log(data.key);
-      // module.getUrl(data);
-      // module.getObject(data);
-      module.createObject(data);
-     }).fail();
+    }).done(callback).fail();
   };
 
-  module.createObject = function(data){
+  module.buildObject = function(data){
     module.amazonParse(data);
     var thing = {
       key: module.key,
@@ -23,21 +18,19 @@ var images = (function(module){
       policy: module.policy,
       signature: module.signature
     };
-    module.renderTemp(thing);
+    var template = Handlebars.compile($('#imageHeaderTemplate').html());
+    $('#secretContainer').append(template({imageHeader: thing}));
+    $('.file').change(tournaments.renderHidden);
   };
 
   module.renderTemp = function(thing){
     AWS.config.update({accessKeyId: module.access_key, secretAccessKey: module.signature, region: 'us-east-1'});
     var templ = Handlebars.compile($('#imageHeaderTemplate').html());
-    $('#imgContainer').html(templ({
+    $('#secretContainer').append(templ({
       imageHeader: thing
     }));
-    $('#uploadForm').on('submit', function(e){
-      e.preventDefault();
-      this.submit();
-      images.createImage();
-      $(this).replaceWith($(this).clone());
-    })
+    $('#file').replaceWith($('#file').clone());
+    $('.file').change(module.renderHidden);
   };
 
   module.amazonParse = function(data){
@@ -48,6 +41,7 @@ var images = (function(module){
     module.acl = data.acl;
     module.policy = data.policy;
     module.sas = data.sas;
+    $('.file').change(module.renderHidden);
   };
 
   module.getUrl = function(data){
@@ -58,6 +52,7 @@ var images = (function(module){
     s3.getSignedUrl('putObject', params, function(err, url){
       module.createImage(url);
       module.uploadImage(url);
+      $('.file').change(module.renderHidden);
     });
 
   };

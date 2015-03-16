@@ -7,25 +7,23 @@ var tournaments = (function(module){
     $('#container').empty();
     var template = Handlebars.compile($('#newTournamentTemplate').html());
     $('#container').html(template());
-    $('input#file').change(module.putFileInList);
+    module.renderHidden();
   };
 
-  module.putFileInList = function(){
-    $('#fileList').append($('<li>').text($('input#file').val()));
-    $(this).replaceWith($(this).clone());
-    $('input#file').change(module.putFileInList);
+  module.renderHidden = function(){
+    images.getImageKey(images.buildObject);
   };
 
   module.submitTournament = function(e){
     e.preventDefault();
   };
 
-  return module
+  return module;
 
 })(tournaments || {});
 
 
 $(document).ready(function(){
   $('#newTournamentNav').click(tournaments.renderStuff);
-  $('#newTournamentForm').submit(tournaments.submitTournament);
+  // $('#newTournamentForm').submit(tournaments.submitTournament);
 });
