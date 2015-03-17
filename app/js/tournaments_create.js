@@ -24,12 +24,12 @@ var tournaments = (function(module){
     module.$files.splice(module.$files.length-1);
     module.$files.each(function(i){
         console.log(i);
-        images.prepareToSend($(this), i);
+        images.prepareToSend($(this));
     });
   };
 
-  module.prepareTournament = function(){
-    var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + images.key;
+  module.prepareTournament = function(data){
+    var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + data.key;
     module.image_array.push({'url': url});
     module.safeToCreate();
   };
