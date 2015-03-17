@@ -53,8 +53,8 @@ var images = (function(module){
   module.uploadImage = function(link){
     $.ajax({
       url: 'https://my-pixelect-bucket.s3.amazonaws.com/',
-      type: 'POST',
-      formdata:{
+      type: 'GET',
+      formData:{
         key: "/" + module.key + "/" + $('#amazonfile').val(),
         AWSAccessKeyId: module.access_key,
         acl: module.acl,
