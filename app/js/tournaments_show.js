@@ -12,7 +12,7 @@ var tournaments = (function(module){
       url: module.tournaments_path + "/" + id.toString(),
     })
     .done(function(response) {
-      if (reponse.status === 'open'){
+      if (response.status === 'open'){
         module.renderOpenTournament(response);
       } else {
         module.renderClosedTournament(response);
