@@ -24,8 +24,12 @@ var tournaments = (function(module){
     });
   };
 
-  module.renderOpenTournament = function(){
-
+  module.renderOpenTournament = function(response){
+    var activeObject = {question: response.question, leftImage: response.images[0], rightImage: response.images[1]}
+    var template = Handlebars.compile($('#showOpenTournamentTemplate').html());
+    $('#container').html(template({
+      tournament: activeObject
+    }));
   };
 
   module.renderClosedTournament = function(response){
