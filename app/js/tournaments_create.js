@@ -22,9 +22,8 @@ var tournaments = (function(module){
     module.image_array = [];
     module.$files = $('.file');
     module.$files.splice(module.$files.length-1);
-    module.$files.each(function(i){
-        console.log(i);
-        images.prepareToSend($(this));
+    module.$files.each(function(){
+      images.prepareToSend($(this));
     });
   };
 
@@ -37,7 +36,7 @@ var tournaments = (function(module){
   module.safeToCreate = function(){
     if (module.image_array.length === module.$files.length){
       console.log('time to create');
-      module.createTournament();
+      users.findUser(tournaments.createTournament);
     } else {
       console.log('not yet.');
     }
@@ -49,8 +48,8 @@ var tournaments = (function(module){
       type: 'POST',
       data: {
         tournament:{
-          user_id: 3,
-          question: 'same',
+          user_id: users.user.id,
+          question: $('#question').val(),
           images_attributes: module.image_array
         }
       }

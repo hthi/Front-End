@@ -16,7 +16,9 @@ var users = (function(module){
       url: users.user_path
     }).done(function(data){
       module.user = data;
-      callback(data);
+      if (callback) {
+        callback(data);
+      }
     }).fail();
   };
 
