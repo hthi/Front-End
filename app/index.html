@@ -116,5 +116,20 @@
     </div>
     </script>
 
+    <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
+      <div id="openTournament">
+        <h3>{{tournament.question}}</h3>
+
+          <div class="imageContainer">
+            <img src="{{tournament.leftImage.url}}" id="leftImage" class="activePick" />
+
+              <h4>or</h4>
+
+            <img src="{{tournament.rightImage.url}}" id="rightImage" class="activePick" />
+          </div>
+
+      </div>
+    </script>
+
   </body>
 </html>
