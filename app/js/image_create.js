@@ -7,7 +7,10 @@ var images = (function(module){
      $.ajax({
       url: environment.host + '/amazon/sign_key',
       type: 'GET'
-    }).done(callback).fail();
+    }).done(function(data){
+      module.amazonParse(data);
+      callback();
+    }).fail();
   };
 
   module.buildObject = function(data){
@@ -18,9 +21,6 @@ var images = (function(module){
       policy: module.policy,
       signature: module.signature
     };
-    var template = Handlebars.compile($('#imageHeaderTemplate').html());
-    $('#secretContainer').append(template({imageHeader: thing}));
-    $('.file').change(tournaments.renderHidden);
   };
 
   module.amazonParse = function(data){
@@ -47,6 +47,42 @@ var images = (function(module){
       console.log(data);
     }).fail();
   };
+
+  module.prepareToSend = function(input, index){
+    module.file = input[0].files[0];
+    module.getImageKey(module.postRequests);
+  };
+
+  module.postRequests = function(){
+    module.amazonAjax();
+    tournaments.prepareTournament();
+  };
+
+  module.test = function(){
+    module.getImageKey(module.tryAjax);
+  };
+
+  module.amazonAjax = function(){
+    $.ajaxPrefilter(function(options){
+      options.headers = {};
+      options.headers['Accept'] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+    });
+    var fd = new FormData();
+
+    fd.append('key', module.key);
+    fd.append('AWSAccessKeyId', module.access_key);
+    fd.append('policy', module.policy);
+    fd.append('signature', module.signature);
+    fd.append('Content-Type', module.file.type);
+    fd.append('file', module.file);
+    $.ajax({
+      url: 'https://s3.amazonaws.com/my-pixelect-bucket',
+      type: 'POST',
+      data: fd,
+      processData: false,
+      contentType: false
+    }).done(function(){console.log('sent to amazon')});
+  }
 
   return module
 

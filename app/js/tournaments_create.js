@@ -7,55 +7,43 @@ var tournaments = (function(module){
     $('#container').empty();
     var template = Handlebars.compile($('#newTournamentTemplate').html());
     $('#container').html(template());
-    module.renderHidden();
+    module.renderFileUpload();
     $('#newTournamentForm').submit(module.submitTournament);
-
   };
 
-  module.renderHidden = function(){
-    images.getImageKey(images.buildObject);
+  module.renderFileUpload = function(){
+    var template = Handlebars.compile($('#imageHeaderTemplate').html());
+    $('#uploadContainer').append(template({}));
+    $('.file').change(tournaments.renderFileUpload);
   };
 
   module.submitTournament = function(event){
     event.preventDefault();
-    var image_array = [];
-    var $uploadForm = $('.uploadForm');
-    $uploadForm.splice($uploadForm.length-1);
-    $uploadForm.each(function(i){
-      setTimeout(function(){
-        var a = $uploadForm[i];
-        a.submit();
-        var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + $(a).find('.imageKey').val();
-        image_array.push({'url': url});
-        console.log(image_array);
+    module.image_array = [];
+    module.$files = $('.file');
+    module.$files.splice(module.$files.length-1);
+    module.$files.each(function(i){
         console.log(i);
-      }, i*1000);
+        images.prepareToSend($(this), i);
     });
-    console.log("array:" + image_array);
-    setTimeout(function(){
-      $.ajax({
-      url: module.tournaments_path,
-      type: 'POST',
-      data: {
-        tournament:{
-          user_id: 3,
-          question: $('#question').val(),
-          images_attributes: image_array
-        }
-      }
-    })
-    .done(function(data) {
-      console.log(data);
-    })
-    .fail(function() {
-      console.log("error");
-    });
-    }, 10000);
-
   };
 
+  module.prepareTournament = function(){
+    var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + images.key;
+    module.image_array.push({'url': url});
+    module.safeToCreate();
+  };
 
-  module.testajax = function(){
+  module.safeToCreate = function(){
+    if (module.image_array.length === module.$files.length){
+      console.log('time to create');
+      module.createTournament();
+    } else {
+      console.log('not yet.');
+    }
+  };
+
+  module.createTournament = function(){
     $.ajax({
       url: module.tournaments_path,
       type: 'POST',
@@ -63,10 +51,7 @@ var tournaments = (function(module){
         tournament:{
           user_id: 3,
           question: 'same',
-          images:
-            [{url: 'www.image1.com'},
-            {url: 'www.image2.com'},
-            {url: 'www.image3.com'}]
+          images_attributes: module.image_array
         }
       }
     })
