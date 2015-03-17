@@ -99,5 +99,22 @@
         </form>
       </div>
     </script>
+
+   <script type='text/x-handlebars-template' id='showClosedTournamentTemplate'>
+   <div id='closedTournament'>
+   <h3>{{tournament.question}} (Closed)</h3>
+   <h4>Winner:</h4>
+   <img src="{{tournament.popular.url}}" alt="winning picture">
+    </div>
+
+    <div id="comments_container">
+        {{#each tournament.comments}}
+        <p>{{user_id}}</p>
+        <p>{{body}}</p>
+        <p>{{subcomment}}</p>
+        {{/each}}
+    </div>
+    </script>
+
   </body>
 </html>
