@@ -5,10 +5,43 @@
 </head>
 <body>
 
-<input type="file" id="amazonfile" />
-<input type="submit" id="submitFile" />
+
+<div id='imgContainer'></div>
+
+
+<script type="text/x-handlebars-template" id="imageHeaderTemplate">
+    <div class="imageHeader">
+      <form id='uploadForm' action="https://s3.amazonaws.com/my-pixelect-bucket" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="{{imageHeader.key}}">
+        <input type="hidden" name="AWSAccessKeyId" value="{{imageHeader.access_key}}">
+        <input type="hidden" name="policy" value="{{imageHeader.policy}}">
+        <input type="hidden" name="signature" value="{{imageHeader.signature}}">
+        <input type="hidden" name="Content-Type" value="image/jpeg">
+
+        <!-- Include any additional input fields here -->
+
+        File to upload to S3:
+        <input id='file' name="file" type="file">
+        <br>
+        <input type="submit" value="Upload File to S3">
+      </form>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/handlebars/handlebars.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.17.min.js"></script>
 <script src="js/app.js" type="text/javascript"></script>
 <script src="js/image_create.js" type="text/javascript"></script>

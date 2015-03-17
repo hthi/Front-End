@@ -18,6 +18,11 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <nav>
+      <ul>
+        <li id='newTournamentNav'>Create</li>
+      </ul>
+    </nav>
     <h1>My new repo template for javascript</h1>
     <div id="container"></div>
 
@@ -74,5 +79,42 @@
         </ul>
       </div>
     </script>
+
+    <script type='text/x-handlebars-template' id='newTournamentTemplate'>
+        <div id='newTournament'>
+          <form id='newTournamentForm'>
+            <label for='question'>Question</label>
+            <input type='text' id='question'/>
+            <input type='submit'/>
+          </form>
+            <ul id='fileList'></ul>
+            <div id='uploadContainer'></div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="imageHeaderTemplate">
+      <div class="imageHeader">
+        <form class='uploadForm'>
+          <input class='file' name="file" type="file"/>
+        </form>
+      </div>
+    </script>
+
+   <script type='text/x-handlebars-template' id='showClosedTournamentTemplate'>
+   <div id='closedTournament'>
+   <h3>{{tournament.question}} (Closed)</h3>
+   <h4>Winner:</h4>
+   <img src="{{tournament.popular.url}}" alt="winning picture">
+    </div>
+
+    <div id="comments_container">
+        {{#each tournament.comments}}
+        <p>{{user_id}}</p>
+        <p>{{body}}</p>
+        <p>{{subcomment}}</p>
+        {{/each}}
+    </div>
+    </script>
+
   </body>
 </html>

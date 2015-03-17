@@ -3,45 +3,22 @@
 
 var images = (function(module){
 
-  module.getAmazonJson = function(){
-    $.ajax({
+  module.getImageKey = function(callback, holder){
+     $.ajax({
       url: environment.host + '/amazon/sign_key',
       type: 'GET'
     }).done(function(data){
-      // console.log(data.key);
-      module.getUrl(data);
-     }).fail();
+      callback(data, holder);
+    }).fail();
   };
 
-  module.amazonParse = function(data){
-    module.access_key = data.access_key;
-    module.key = data.key;
-    module.bucket = data.bucket;
-    module.signature = data.signature;
-    module.acl = data.acl;
-    module.policy = data.policy;
-    module.sas = data.sas;
-  };
-
-  module.getUrl = function(data){
-    module.amazonParse(data);
-    AWS.config.update({accessKeyId: module.access_key, secretAccessKey: module.signature, region: 'us-east-1'});
-    var s3 = new AWS.S3();
-    var params = {Bucket: module.bucket, Key: module.key};
-    s3.getSignedUrl('getObject', params, function(err, url){
-      module.createImage(url);
-      module.uploadImage(url);
-    });
-
-  };
-
-  module.createImage = function(link){
+  module.createImage = function(){
     $.ajax({
       url: module.images_path,
       type: 'POST',
       data:{
         image:{
-          url: link,
+          url: 'https://s3.amazonaws.com/my-pixelect-bucket/' + module.key,
           tournament_id: 1
         }
       }
@@ -50,38 +27,42 @@ var images = (function(module){
     }).fail();
   };
 
-  module.uploadImage = function(link){
-    $.ajax({
-      url: 'https://my-pixelect-bucket.s3.amazonaws.com/',
-      type: 'GET',
-      formData:{
-        key: "/" + module.key + "/" + $('#amazonfile').val(),
-        AWSAccessKeyId: module.access_key,
-        acl: module.acl,
-        policy: module.policy,
-        signature: module.signature,
-        success_action_status: module.sas
-      }
-    }).done(function(data){
-      console.log(data);
-    }).fail(function(jqXHR, textStatus, errorThrown){
-      console.log(textStatus);
-      console.log(errorThrown);
-    });
-    // $.ajax({
-    //   url: link,
-    //   type: 'POST',
-    //   data:{
-    //     file: $('#amazonfile').val()
-    //   }
-    // }).done(function(data){
-    //   console.log(data);
-    // }).fail(function(jqXHR, textStatus, errorThrown){
-    //   console.log(textStatus);
-    //   console.log(errorThrown);
-    // });
+  module.prepareToSend = function(input){
+    var file = input[0].files[0];
+    module.getImageKey(module.postRequests, file);
   };
 
+  module.postRequests = function(data, holder){
+    module.amazonAjax(data, holder);
+    tournaments.prepareTournament(data);
+  };
+
+  module.test = function(){
+    module.getImageKey(module.tryAjax);
+  };
+
+  module.amazonAjax = function(data, file){
+    console.log(data);
+    $.ajaxPrefilter(function(options){
+      options.headers = {};
+      options.headers['Accept'] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+    });
+    var fd = new FormData();
+
+    fd.append('key', data.key);
+    fd.append('AWSAccessKeyId', data.access_key);
+    fd.append('policy', data.policy);
+    fd.append('signature', data.signature);
+    fd.append('Content-Type', file.type);
+    fd.append('file', file);
+    $.ajax({
+      url: 'https://s3.amazonaws.com/my-pixelect-bucket',
+      type: 'POST',
+      data: fd,
+      processData: false,
+      contentType: false
+    }).done(function(){console.log('sent to amazon')});
+  }
 
   return module
 

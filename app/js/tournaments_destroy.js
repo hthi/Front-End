@@ -8,7 +8,7 @@ var tournaments = (function(module){
       url: module.tournaments_path + "/" + id,
       type: 'DELETE'
     })
-    .done(function(data)).fail();
+    .done(function(data){}).fail();
   };
 
   return module;
