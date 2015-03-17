@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Javascript Repo Template</title>
+    <title>Pixelect</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -131,6 +131,26 @@
 
       </div>
     </script>
+
+  <script type='text/x-handlebars-template' id='showWinnerTournamentTemplate'>
+     <div id='winnerTournament'>
+       <h3>{{tournament.question}}</h3>
+       <h4>Your Pixelection:</h4>
+       <img src="{{tournament.winner.url}}" alt="your winning picture">
+       <h4>Community's Pixelection:</h4>
+       <img src="{{tournament.popular.url}}" alt="community's winning picture">
+      </div>
+
+      <div id="comments_container">
+        {{#each tournament.comments}}
+          <p>{{user_id}}</p>
+          <p>{{body}}</p>
+          <p>{{subcomment}}</p>
+        {{/each}}
+      </div>
+    </script>
+
+
 
   </body>
 </html>

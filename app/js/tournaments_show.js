@@ -43,14 +43,22 @@ var tournaments = (function(module){
     module.count = 0;
     module.array = _.flatten(module.array);
     module.array = _.shuffle(module.array);
-    module.array = module.each_slice(module.array);
-    module.renderOpenTournament();
 
+    if(module.array.length === 1){
+      module.renderWinner();
+    }
+    else{
+      module.array = module.each_slice(module.array);
+      module.renderOpenTournament();
+    }
   };
 
   module.renderOpenTournament = function(){
-    if(module.array[module.count].length < 2){
+    console.log(module.array);
+    console.log(module.count);
+    if(module.count === module.array.length || module.array[module.count].length < 2){
       module.runTournament();
+
     }
     else{
       module.renderPairing();
@@ -73,6 +81,14 @@ var tournaments = (function(module){
       module.count += 1;
       module.renderOpenTournament();
     });
+  };
+
+  module.renderWinner = function(){
+    module.active.winner = module.array[0];
+    var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
+    $('#container').html(template({
+      tournament: module.active
+    }));
   };
 
   module.renderClosedTournament = function(response){
