@@ -53,6 +53,9 @@ var users = (function(module){
       event.preventDefault();
       tournaments.delete_a_tournament(this.id);
     });
+    $('.tournament').click(function(){
+      touraments.showTournament(this.id);
+    });
   };
 
   return module;

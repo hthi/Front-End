@@ -16,7 +16,9 @@ var tournaments = (function(module){
     module.$container.html(template({
         tournaments: response
     }));
-
+    $('.tournament').click(function(){
+      tournaments.showTournament(this.id);
+    });
   };
 
   return module
