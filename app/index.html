@@ -175,7 +175,9 @@
           <p>{{user_id}}</p>
           <p>{{body}}</p>
           <div>
+            {{#if subcomment}}
               <p>Subcomment: {{subcomment}}</p>
+              {{/if}}
           </div>
         {{/each}}
       </div>
@@ -261,7 +263,10 @@
           <p>User Id: {{user_id}}</p>
           <p>Comment: {{body}}</p>
           <div>
+            {{#if subcomment}}
             <p>Subcomment: {{subcomment}}</p>
+            {{/if}}
+            }
           </div>
         {{/each}}
       </div>

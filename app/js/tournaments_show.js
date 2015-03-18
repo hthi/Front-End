@@ -14,6 +14,7 @@ var tournaments = (function(module){
     };
 
   module.getTournament = function(id){
+    console.log(id);
     $.ajax({
       url: module.tournaments_path + "/" + id.toString(),
     })
