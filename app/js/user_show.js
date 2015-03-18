@@ -23,7 +23,7 @@ var users = (function(module){
   };
 
   module.show_user_page = function(){
-    users.$container.empty();
+    environment.emptyContainers();
     $.ajaxPrefilter(function( options ) {
         options.headers = {};
         options.headers['AUTHORIZATION'] = module.authToken;

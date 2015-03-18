@@ -11,7 +11,7 @@ var tournaments = (function(module){
   };
 
   module.renderStuff = function(){
-    $('#container').empty();
+    environment.emptyContainers();
     var template = Handlebars.compile($('#newTournamentTemplate').html());
     $('#container').html(template());
     module.renderFileUpload();
