@@ -10,7 +10,7 @@ var tournaments = (function(module){
   };
 
   module.showTournament = function(){
-    module.getTournament(76);
+    module.getTournament(78);
     };
 
   module.getTournament = function(id){
