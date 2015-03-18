@@ -1,3 +1,12 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 img {
   max-width: 500px;
+}
+.activePick:hover {
+  border: 2px solid red;
 }
