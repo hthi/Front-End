@@ -9,8 +9,8 @@ var tournaments = (function(module){
     }).toArray()._wrapped;
   };
 
-  module.showTournament = function(){
-    module.getTournament(78);
+  module.showTournament = function(id){
+    module.getTournament(id);
     };
 
   module.getTournament = function(id){
@@ -103,6 +103,13 @@ var tournaments = (function(module){
     $('#container').html(template({
       tournament: module.active
     }));
+    $('#newCommentForm').submit(function(e){
+      e.preventDefault();
+      comments.createComment(module.active);
+    });
+    $('.subcomment').click(function(){
+      comments.addSubcomment(this);
+    });
   };
 
   module.updateWinner = function(callback){
@@ -130,6 +137,13 @@ var tournaments = (function(module){
     $('#container').html(template({
       tournament: response
     }));
+    $('#newCommentForm').submit(function(e){
+      e.preventDefault();
+      comments.createComment(response);
+    });
+    $('.subcomment').click(function(){
+      comments.addSubcomment(this);
+    });
   };
 
 

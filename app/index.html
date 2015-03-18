@@ -80,7 +80,7 @@
       <div id='all-tournaments'>
         <ul>
           {{#each tournaments}}
-            <h3><a href='?tournament={{id}}'>{{question}}</a></h3>
+            <h3><span class='tournament' id="{{id}}">{{question}}</span></h3>
             <li>Status: {{status}}</li>
             <li>Number of Comments: {{comments.length}}</li>
           {{/each}}
@@ -92,7 +92,7 @@
       <div id='user-tournaments'>
         <ul>
           {{#each tournaments}}
-            <h3><a href='?tournament={{id}}'>{{question}}</a></h3>
+            <h3><span class='tournament' id='{{id}}'>{{question}}</span></h3>
             <button class='delete' id='{{id}}'>Delete</button>
             <li>Status: {{status}}</li>
             <li>Number of Comments: {{comments.length}}</li>
@@ -133,8 +133,20 @@
         <p>{{user_id}}</p>
         <p>{{body}}</p>
         <p>{{subcomment}}</p>
+        <div>
+          <textarea class='subcommentText'></textarea>
+          <input class='subcomment' id="{{id}}" type='submit'/>
+        </div>
         {{/each}}
     </div>
+
+    <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
+      </div>
     </script>
 
     <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
@@ -165,10 +177,22 @@
 
       <div id="comments_container">
         {{#each tournament.comments}}
-          <p>{{user_id}}</p>
-          <p>{{body}}</p>
-          <p>{{subcomment}}</p>
+          <p>User Id: {{user_id}}</p>
+          <p>Comment: {{body}}</p>
+          <p>Subcomment: {{subcomment}}</p>
+          <div>
+            <textarea class='subcommentText'></textarea>
+            <input class='subcomment' id="{{id}}" type='submit'/>
+          </div>
         {{/each}}
+      </div>
+
+      <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
       </div>
     </script>
 
