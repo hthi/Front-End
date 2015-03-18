@@ -150,6 +150,7 @@
         {{/each}}
     </div>
 
+    {{#if tournament.current}}
     <div id='newComment'>
           <form id='newCommentForm'>
             <label for='comment'>Comment</label>
@@ -157,6 +158,9 @@
             <input type='submit'/>
           </form>
       </div>
+      {{else}}
+        <p>If you would like to add a comment, please sign in</p>
+      {{/if}}
     </script>
 
     <script type='text/x-handlebars-template' id='showVisitorClosedTournamentTemplate'>
@@ -176,13 +180,17 @@
         {{/each}}
       </div>
 
-      <div id='newComment'>
-        <form id='newCommentForm'>
-          <label for='comment'>Comment</label>
-          <input type='text' id='comment'/>
-          <input type='submit'/>
-        </form>
+      {{#if tournament.current}}
+    <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
       </div>
+      {{else}}
+        <p>If you would like to add a comment, please sign in</p>
+      {{/if}}
     </script>
 
     <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
@@ -226,13 +234,17 @@
         {{/each}}
       </div>
 
-      <div id='newComment'>
+     {{#if tournament.current}}
+    <div id='newComment'>
           <form id='newCommentForm'>
             <label for='comment'>Comment</label>
             <input type='text' id='comment'/>
             <input type='submit'/>
           </form>
       </div>
+      {{else}}
+        <p>If you would like to add a comment, please sign in</p>
+      {{/if}}
     </script>
 
     <script type='text/x-handlebars-template' id='showVisitorWinnerTournamentTemplate'>
@@ -254,13 +266,17 @@
         {{/each}}
       </div>
 
-      <div id='newComment'>
+     {{#if tournament.current}}
+    <div id='newComment'>
           <form id='newCommentForm'>
             <label for='comment'>Comment</label>
             <input type='text' id='comment'/>
             <input type='submit'/>
           </form>
       </div>
+      {{else}}
+        <p>If you would like to add a comment, please sign in</p>
+      {{/if}}
     </script>
 
 
