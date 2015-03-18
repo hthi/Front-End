@@ -5,7 +5,9 @@ var environment = (function(module){
   };
 
   module.showCorrectButtons = function(){
+    $('#tournamentDropNav').unbind();
     $('#tournamentDropNav').click(function(){
+      console.log('ready');
       $('#tournamentDropNav').find('ul').toggle();
     });
 

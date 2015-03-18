@@ -36,19 +36,22 @@ var users = (function(module){
         url: module.user_path + "/" + data.id
       }).done(function(response){
         module.render(response);
-        module.setupAjaxRequests();
       }).fail();
   };
 
   module.render = function(response){
     var template = Handlebars.compile(module.$userShowTemplate.html());
-    module.$container.html(template({
+    $('#openContainer').html(template({
       user: response
     }));
     var template2 = Handlebars.compile($('#userTournamentsTemplate').html());
-    $('#tournaments-container').html(template2({
+    $('#closedContainer').html(template2({
       tournaments: response.tournaments
     }));
+    var template3 = Handlebars.compile($('#newTournamentTemplate').html());
+    $('#openContainer').append(template3({}));
+    tournaments.renderFileUpload();
+    $('#newTournamentForm').submit(tournaments.submitTournament);
     $('.delete').click(function(event){
       event.preventDefault();
       tournaments.delete_a_tournament(this.id);
