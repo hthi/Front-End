@@ -5,7 +5,8 @@ var users = (function(module){
 
   module.sign_out = function(){
     localStorage.authToken = '';
-    module.user = null;
+    module.user = undefined;
+    location.reload();
   };
 
   return module;
