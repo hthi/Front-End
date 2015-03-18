@@ -45,10 +45,16 @@ var users = (function(module){
     module.$container.html(template({
       user: response
     }));
-    var template2 = Handlebars.compile($('#allTournamentsTemplate').html());
+    var template2 = Handlebars.compile($('#userTournamentsTemplate').html());
     $('#tournaments-container').html(template2({
       tournaments: response.tournaments
     }));
+    $('.delete').click(function(event){
+      event.preventDefault();
+      console.log(this.id);
+      var id = this.id
+      tournaments.delete_a_tournament(id);
+    });
   };
 
   return module;

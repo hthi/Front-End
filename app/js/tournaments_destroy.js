@@ -5,10 +5,11 @@ var tournaments = (function(module){
 
   module.delete_a_tournament = function(id){
     $.ajax({
-      url: module.tournaments_path + "/" + id,
+      url: tournaments.tournaments_path + "/" + id,
       type: 'DELETE'
-    })
-    .done(function(data){}).fail();
+    }).done(function(){
+      location.reload();
+    });
   };
 
   return module;
