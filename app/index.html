@@ -296,8 +296,6 @@
       {{/if}}
     </script>
 
-
-
     <script type='text/x-handlebars-template' id='signInTemplate'>
       <section class="modal">
         <header>
@@ -349,5 +347,17 @@
         <button id='cancel'>cancel</button>
       </section>
     </script>
+
+    <script type='text/x-handlebars-template' id='deleteTemplate'>
+      <section class="modal">
+        <h1>Are you Sure?</h1>
+        <input type='hidden' id='target_id' value='{{id.target}}'>
+        <button id='destroy'>Yes</button>
+        <button id='cancel'>No</button>
+      </section>
+    </script>
+
+
+
   </body>
 </html>
