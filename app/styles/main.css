@@ -7,6 +7,10 @@
 img {
   max-width: 500px;
 }
+.activePick {
+  border: 2px solid black;
+}
+
 .activePick:hover {
   border: 2px solid red;
 }
