@@ -5,7 +5,7 @@ var images = (function(module){
 
   module.getImageKey = function(callback, holder){
      $.ajax({
-      url: environment.host + '/amazon/sign_key',
+      url: 'https://agile-thicket-8420.herokuapp.com/amazon/sign_key',
       type: 'GET'
     }).done(function(data){
       callback(data, holder);

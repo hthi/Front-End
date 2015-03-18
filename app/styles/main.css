@@ -17,7 +17,13 @@ a {
 img {
   max-width: 500px;
 }
-img.activePick {
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.activePick {
   border: 2px solid black;
   width: 400px;
   height: 350px;
@@ -47,7 +53,6 @@ nav {
 }
 
 nav ul {
-  list-style-type: none;
   top: 15px;
   right: 10px;
   position: absolute;
@@ -110,6 +115,9 @@ nav li:hover {
   top: 200px;
   height: 70%;
   overflow: scroll;
+  border: 2px solid blue;
+  border-radius: 6px;
+  padding: 10px;
 }
 
 #closedContainer {
@@ -119,6 +127,40 @@ nav li:hover {
   top: 200px;
   height: 70%;
   overflow: scroll;
+  border: 2px solid blue;
+  border-radius: 6px;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+}
+
+.tournament:hover {
+  font-style: italic;
+}
+
+#container {
+  width: 98%;
+  margin: 0 auto;
+}
+h2 {
+  margin-top: 5px;
+  font-size: 50px;
+  margin-bottom: 1px;
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  font-size: 20px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
 }
 
 div#rightImage {
@@ -130,3 +172,12 @@ div#rightImage {
   display: inline;
 }
 
+#empty{
+  text-align: center;
+}
+.delete {
+  float: right;
+}
+.delete:hover {
+  background: red;
+}
