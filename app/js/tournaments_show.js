@@ -99,17 +99,34 @@ var tournaments = (function(module){
 
   module.renderWinner = function(){
     module.active.winner = module.array[0];
-    var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
-    $('#container').html(template({
-      tournament: module.active
-    }));
-    $('#newCommentForm').submit(function(e){
-      e.preventDefault();
-      comments.createComment(module.active);
-    });
-    $('.subcomment').click(function(){
-      comments.addSubcomment(this);
-    });
+
+    if(users.user || user.user.id == module.active.user_id){
+      var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
+      $('#container').html(template({
+        tournament: module.active
+      }));
+      $('#newCommentForm').submit(function(e){
+        e.preventDefault();
+        comments.createComment(module.active);
+      });
+      $('.subcomment').click(function(){
+        comments.addSubcomment(this);
+      });
+    } else {
+      var template = Handlebars.compile($('#showVisitorWinnerTournamentTemplate').html());
+      $('#container').html(template({
+        tournament: module.active
+      }));
+      $('#newCommentForm').submit(function(e){
+        e.preventDefault();
+        comments.createComment(module.active);
+      });
+      $('.subcomment').click(function(){
+        comments.addSubcomment(this);
+      });
+    }
+
+
   };
 
   module.updateWinner = function(callback){
@@ -133,17 +150,26 @@ var tournaments = (function(module){
   };
 
   module.renderClosedTournament = function(response){
-    var template = Handlebars.compile($('#showClosedTournamentTemplate').html());
-    $('#container').html(template({
-      tournament: response
-    }));
+    if (users.user && response.user_id === users.user.id){
+      var template = Handlebars.compile($('#showClosedTournamentTemplate').html());
+      $('#container').html(template({
+        tournament: response
+      }));
+      $('.subcomment').click(function(){
+        comments.addSubcomment(this);
+      });
+    } else {
+      var template = Handlebars.compile($('#showVisitorClosedTournamentTemplate').html());
+      $('#container').html(template({
+        tournament: response
+      }));
+    }
+
     $('#newCommentForm').submit(function(e){
       e.preventDefault();
       comments.createComment(response);
     });
-    $('.subcomment').click(function(){
-      comments.addSubcomment(this);
-    });
+
   };
 
 
