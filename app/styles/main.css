@@ -6,13 +6,21 @@
 
 body {
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
 
 img {
   max-width: 500px;
 }
-.activePick {
+img.activePick {
   border: 2px solid black;
+  width: 400px;
+  height: 350px;
 }
 
 .activePick:hover {
@@ -112,3 +120,13 @@ nav li:hover {
   height: 70%;
   overflow: scroll;
 }
+
+div#rightImage {
+  display: inline;
+  float: right;
+}
+
+#leftImage {
+  display: inline;
+}
+
