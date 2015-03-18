@@ -98,6 +98,7 @@ nav li:hover {
   top: 25%;
   left: 25%;
   background-color: rgba(22, 131, 204, 1);
+  min-height: 120px;
 }
 
 #overlay {
@@ -177,7 +178,37 @@ div#rightImage {
 }
 .delete {
   float: right;
+  width: 50px;
+  height: 30px;
 }
 .delete:hover {
   background: red;
+}
+
+#destroy, #cancel {
+  width: 200px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+#destroy:hover {
+  background: red;
+}
+
+#cancel:hover {
+  background: green;
+}
+
+#buttons {
+  width: 410px;
+  margin: 0 auto;
+}
+
+#submitNewTournament {
+  width: 50px;
+  height: 30px;
+  margin-top: 20px;
+}
+#submitNewTournament:hover {
+  background: green;
 }

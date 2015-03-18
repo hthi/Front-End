@@ -21,7 +21,10 @@ var tournaments = (function(module){
   module.renderFileUpload = function(){
     var template = Handlebars.compile($('#imageHeaderTemplate').html());
     $('#uploadContainer').append(template({}));
-    $('.file').change(tournaments.renderFileUpload);
+    $('.file').change(function(){
+      tournaments.renderFileUpload();
+      $(this).prop('disabled', true);;
+    });
   };
 
   module.submitTournament = function(event){

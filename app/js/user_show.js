@@ -51,7 +51,7 @@ var users = (function(module){
     var template3 = Handlebars.compile($('#newTournamentTemplate').html());
     $('#openContainer').append(template3({}));
     tournaments.renderFileUpload();
-    $('#newTournamentForm').submit(tournaments.submitTournament);
+    $('#submitNewTournament').click(tournaments.submitTournament);
     $('.delete').click(function(event){
       event.preventDefault();
       tournaments.delete_a_tournament(this.id);
