@@ -36,7 +36,9 @@
         </ul>
       </div>
     </nav>
-    <div id="container"></div>
+    <div id="container">
+      <h1>Vote for pictures.</h1>
+    </div>
     <div id='openContainer'></div>
     <div id='closedContainer'></div>
     <div id='signContainer'></div>
@@ -120,13 +122,11 @@
 
     <script type='text/x-handlebars-template' id='newTournamentTemplate'>
         <div id='newTournament'>
-          <form id='newTournamentForm'>
             <label for='question'>Question</label>
             <input type='text' id='question'/>
-            <input type='submit'/>
-          </form>
             <ul id='fileList'></ul>
             <div id='uploadContainer'></div>
+            <button id='submitNewTournament'>Submit</button>
         </div>
     </script>
 
@@ -352,8 +352,10 @@
       <section class="modal">
         <h1>Are you Sure?</h1>
         <input type='hidden' id='target_id' value='{{id.target}}'>
-        <button id='destroy'>Yes</button>
-        <button id='cancel'>No</button>
+        <div id='buttons'>
+          <button id='destroy'>Yes</button>
+          <button id='cancel'>No</button>
+        <div>
       </section>
     </script>
 
