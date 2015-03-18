@@ -45,7 +45,7 @@ var tournaments = (function(module){
     module.array = _.shuffle(module.array);
 
     if(module.array.length === 1){
-      module.renderWinner();
+      module.updateWinner(module.renderWinner);
     }
     else{
       module.array = module.each_slice(module.array);
@@ -89,6 +89,26 @@ var tournaments = (function(module){
     $('#container').html(template({
       tournament: module.active
     }));
+  };
+
+  module.updateWinner = function(callback){
+    $.ajax({
+      url: images.images_path + "/" + module.array[0].id + "/win",
+      type: 'POST'
+    })
+    .done(function(data) {
+      console.log(data);
+      if(callback){
+        callback();
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
   };
 
   module.renderClosedTournament = function(response){
