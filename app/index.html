@@ -29,7 +29,7 @@
         <li>
         <!-- <li style='display: none' id='newTournamentNav'>Create</li> -->
         <li style='display: none' id='userNav'>User Page</li>
-        <!-- <li style='display: none' id='tournamentIndexNav'>View Tournaments</li> -->
+        <li style='dispay: none' id='tournamentIndexNav'>View Tournaments</li>
         <li style='display: none' id='signInNav'>Sign In</li>
         <li style='display: none' id='signUpNav'>Sign Up</li>
         <li style='display: none' id='signOutNav'>Sign Out</li>
@@ -159,6 +159,32 @@
       </div>
     </script>
 
+    <script type='text/x-handlebars-template' id='showVisitorClosedTournamentTemplate'>
+     <div id='closedTournament'>
+       <h3>{{tournament.question}} (Closed)</h3>
+       <h4>Winner:</h4>
+       <img src="{{tournament.popular.url}}" alt="winning picture">
+      </div>
+
+      <div id="comments_container">
+        {{#each tournament.comments}}
+          <p>{{user_id}}</p>
+          <p>{{body}}</p>
+          <div>
+              <p>Subcomment: {{subcomment}}</p>
+          </div>
+        {{/each}}
+      </div>
+
+      <div id='newComment'>
+        <form id='newCommentForm'>
+          <label for='comment'>Comment</label>
+          <input type='text' id='comment'/>
+          <input type='submit'/>
+        </form>
+      </div>
+    </script>
+
     <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
       <div id="openTournament">
         <h3>{{tournament.question}}</h3>
@@ -196,6 +222,34 @@
             <textarea class='subcommentText'></textarea>
             <input class='subcomment' id="{{id}}" type='submit'/>
             {{/if}}
+          </div>
+        {{/each}}
+      </div>
+
+      <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
+      </div>
+    </script>
+
+    <script type='text/x-handlebars-template' id='showVisitorWinnerTournamentTemplate'>
+     <div id='winnerTournament'>
+       <h3>{{tournament.question}}</h3>
+       <h4>Your Pixelection:</h4>
+       <img src="{{tournament.winner.url}}" alt="your winning picture">
+       <h4>Community's Pixelection:</h4>
+       <img src="{{tournament.popular.url}}" alt="community's winning picture">
+      </div>
+
+      <div id="comments_container">
+        {{#each tournament.comments}}
+          <p>User Id: {{user_id}}</p>
+          <p>Comment: {{body}}</p>
+          <div>
+            <p>Subcomment: {{subcomment}}</p>
           </div>
         {{/each}}
       </div>
