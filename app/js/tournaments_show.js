@@ -81,6 +81,20 @@ var tournaments = (function(module){
       module.count += 1;
       module.renderOpenTournament();
     });
+    $('.leftFlag').click(function(event){
+      event.preventDefault();
+      images.flagImage(this.id)
+      module.array[module.count].shift();
+      module.count += 1;
+      module.renderOpenTournament();
+    });
+    $('.rightFlag').click(function(event){
+      event.preventDefault();
+      images.flagImage(this.id);
+      module.array[module.count].pop();
+      module.count += 1;
+      module.renderOpenTournament();
+    });
   };
 
   module.renderWinner = function(){
