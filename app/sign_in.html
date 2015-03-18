@@ -12,12 +12,31 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
   <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <nav>
+      <div>
+        <h1 id="logo">Pixelect</h1>
+        <ul>
+          <li style='display: none' id='tournamentDropNav'>Tournaments
+            <ul id='tournamentDropNavMenu' style='display:none'>
+              <li id='newTournamentNav'>Create</li>
+              <li id='tournamentOpenIndexNav'>See All Open</li>
+              <li id='tournamentClosedIndexNav'>See All Closed</li>
+            </ul>
+          <li style='display: none' id='userNav'>User Page</li>
+          <li style='display: none' id='signInNav'>Sign In</li>
+          <li style='display: none' id='signUpNav'>Sign Up</li>
+          <li style='display: none' id='signOutNav'>Sign Out</li>
+        </ul>
+      </div>
+    </nav>
+
     <h1>My new repo template for javascript</h1>
 
     <section class="main-content">
