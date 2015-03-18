@@ -38,6 +38,7 @@
     </nav>
     <h1>yo</h1>
     <div id="container"></div>
+    <div id='signContainer'></div>
 
 
     <!-- build:js(.) scripts/oldieshim.js -->
@@ -285,6 +286,59 @@
       {{/if}}
     </script>
 
+
+
+    <script type='text/x-handlebars-template' id='signInTemplate'>
+      <section class="modal">
+        <header>
+          <h1>Login to Pixelect</h1>
+        </header>
+        <form id="login-form">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" />
+          </div>
+          <input type='submit' />
+         </form>
+         <button id='cancel'>cancel</button>
+      </section>
+    </script>
+
+    <script type='text/x-handlebars-template' id='signUpTemplate'>
+      <section class="modal">
+        <header>
+          <h1>Register for Pixelect</h1>
+        </header>
+        <form id="registration-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" />
+          </div>
+          <div class="form-group">
+            <label for="password-confirmation">Password Confirmation</label>
+            <input type="password" id="password-confirmation" />
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Register" class="submit_btn" />
+          </div>
+        </form>
+        <button id='cancel'>cancel</button>
+      </section>
+    </script>
 
 
   </body>

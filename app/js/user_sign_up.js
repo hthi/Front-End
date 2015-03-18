@@ -3,29 +3,37 @@
 
 var users = (function(module){
 
-  module.submitRegistration = function(event) {
-  event.preventDefault();
-  $.ajax({
-    url: module.user_path,
-    type: 'POST',
-    data: { user: {
-      name: $('#name').val(),
-      email: $('#email').val(),
-      password: $('#password').val(),
-      password_confirmation: $('#password-confirmation').val()
-    }
-  },
-  }).done(module.loginSuccess)
-  .fail(function(error) {
-    console.log(error);
-  });
-  return false;
-};
+  module.renderSignUp = function(){
+    var overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+    $('#signContainer').empty();
+    var template = Handlebars.compile($('#signUpTemplate').html());
+    $('#signContainer').html(template({}));
+    $('#registration-form').submit(function(event){
+      event.preventDefault();
+      module.submitRegistration();
+    });
+    $('#cancel').click(function(){
+      module.removeModal();
+    });
+  };
 
-  module.signUpSuccess = function(userData) {
-    localStorage.setItem('authToken', userData.token);
-    console.log('signed up!');
-    window.location.href = '/';
+
+  module.submitRegistration = function() {
+    $.ajax({
+      url: module.user_path,
+      type: 'POST',
+      data: { user: {
+        name: $('#name').val(),
+        email: $('#email').val(),
+        password: $('#password').val(),
+        password_confirmation: $('#password-confirmation').val()
+      }
+    },
+    }).done(module.loginSuccess)
+    .fail(function(error) {
+      console.log(error);
+    });
+    return false;
   };
 
   return module;
