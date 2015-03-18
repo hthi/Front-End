@@ -3,15 +3,19 @@
 
 var tournaments = (function(module){
 
-  module.all_tournaments_page = function(){
+  module.tournaments_page = function(option){
     tournaments.$container.empty();
     $.ajax({
       url: module.tournaments_path,
     })
-    .done(module.render).fail();
+    .done(function(data){
+      module.render(data, option);
+    }).fail();
   };
 
-  module.render = function(response){
+  module.render = function(response, option){
+    response = _.filter(response, function(tournament){ return tournament.status == option});
+    console.log(response);
     var template = Handlebars.compile(module.$allTournamentsTemplate.html());
     module.$container.html(template({
         tournaments: response

@@ -5,7 +5,13 @@ var users = (function(module){
   };
 
   module.showCorrectButtons = function(){
+    $('#tournamentDropNav').click(function(){
+      $('#tournamentDropNav').find('ul').toggle();
+    });
+
     if (module.user){
+      $('#tournamentDropNav').show();
+
       $('#signInNav').hide();
       $('#signInNav').unbind();
 
@@ -22,9 +28,14 @@ var users = (function(module){
         tournaments.renderStuff();
       });
 
-      $('#tournamentIndexNav').show();
-      $('#tournamentIndexNav').click(function(){
-        tournaments.all_tournaments_page();
+      $('#tournamentOpenIndexNav').show();
+      $('#tournamentOpenIndexNav').click(function(){
+        tournaments.tournaments_page('open');
+      });
+
+      $('#tournamentClosedIndexNav').show();
+      $('#tournamentClosedIndexNav').click(function(){
+        tournaments.tournaments_page('closed');
       });
 
 
@@ -34,6 +45,7 @@ var users = (function(module){
       });
 
     } else {
+      $('#tournamentDropNav').show();
       $('#signInNav').show();
       $('#signInNav').click(function(){
         window.location.href = '/sign_in.html'
@@ -50,9 +62,14 @@ var users = (function(module){
       $('#newTournamentNav').hide();
       $('#newTournamentNav').unbind();
 
-      $('#tournamentIndexNav').show();
-      $('#tournamentIndexNav').click(function(){
-        tournaments.all_tournaments_page();
+      $('#tournamentOpenIndexNav').show();
+      $('#tournamentOpenIndexNav').click(function(){
+        tournaments.tournaments_page('open');
+      });
+
+      $('#tournamentClosedIndexNav').show();
+      $('#tournamentClosedIndexNav').click(function(){
+        tournaments.tournaments_page('closed');
       });
 
       $('#userNav').hide();

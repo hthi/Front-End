@@ -33,3 +33,12 @@ nav li {
   border: 1px solid black;
 
 }
+
+#tournamentDropNav {
+  position: relative;
+}
+
+#tournamentDropNavMenu li {
+  display: block;
+  width: 100px;
+}
