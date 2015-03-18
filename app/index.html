@@ -132,10 +132,13 @@
         {{#each tournament.comments}}
         <p>{{user_id}}</p>
         <p>{{body}}</p>
-        <p>{{subcomment}}</p>
         <div>
-          <textarea class='subcommentText'></textarea>
-          <input class='subcomment' id="{{id}}" type='submit'/>
+        {{#if subcomment}}
+            <p>Subcomment: {{subcomment}}</p>
+            {{else}}
+            <textarea class='subcommentText'></textarea>
+            <input class='subcomment' id="{{id}}" type='submit'/>
+            {{/if}}
         </div>
         {{/each}}
     </div>
@@ -179,10 +182,13 @@
         {{#each tournament.comments}}
           <p>User Id: {{user_id}}</p>
           <p>Comment: {{body}}</p>
-          <p>Subcomment: {{subcomment}}</p>
           <div>
+            {{#if subcomment}}
+            <p>Subcomment: {{subcomment}}</p>
+            {{else}}
             <textarea class='subcommentText'></textarea>
             <input class='subcomment' id="{{id}}" type='submit'/>
+            {{/if}}
           </div>
         {{/each}}
       </div>
