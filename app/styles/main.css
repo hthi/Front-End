@@ -76,3 +76,13 @@ nav li {
   background-color: gray;
   opacity: .3;
 }
+
+#openContainer {
+  position: absolute;
+  left: 0;
+}
+
+#closedContainer {
+  position: absolute;
+  right: 0;
+}

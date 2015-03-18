@@ -78,10 +78,21 @@ var environment = (function(module){
     }
   };
 
+  module.renderLandingPage = function(){
+    $.ajax({
+      url: tournaments.tournaments_path,
+    })
+    .done(function(response){
+      tournaments.render(response, 'open', $('#openContainer'));
+      tournaments.render(response, 'closed', $('#closedContainer'));
+    }).fail();
+  };
+
   return module
 
 })(users || {});
 
 $(document).ready(function(){
   environment.setUpNav();
+  environment.renderLandingPage();
 });
