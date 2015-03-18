@@ -135,6 +135,14 @@
         <p>{{subcomment}}</p>
         {{/each}}
     </div>
+
+    <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
+      </div>
     </script>
 
     <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
@@ -165,10 +173,18 @@
 
       <div id="comments_container">
         {{#each tournament.comments}}
-          <p>{{user_id}}</p>
-          <p>{{body}}</p>
-          <p>{{subcomment}}</p>
+          <p>User Id: {{user_id}}</p>
+          <p>Comment: {{body}}</p>
+          <p>Subcomment: {{subcomment}}</p>
         {{/each}}
+      </div>
+
+      <div id='newComment'>
+          <form id='newCommentForm'>
+            <label for='comment'>Comment</label>
+            <input type='text' id='comment'/>
+            <input type='submit'/>
+          </form>
       </div>
     </script>
 
