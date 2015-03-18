@@ -10,6 +10,7 @@ var tournaments = (function(module){
   };
 
   module.showTournament = function(id){
+    environment.emptyContainers();
     module.getTournament(id);
     };
 
