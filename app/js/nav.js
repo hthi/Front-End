@@ -1,4 +1,4 @@
-var users = (function(module){
+var environment = (function(module){
 
   module.setUpNav = function(){
     module.findUser(module.showCorrectButtons)
@@ -48,12 +48,12 @@ var users = (function(module){
       $('#tournamentDropNav').show();
       $('#signInNav').show();
       $('#signInNav').click(function(){
-        window.location.href = '/sign_in.html'
+        users.renderSignIn();
       });
 
       $('#signUpNav').show();
       $('#signUpNav').click(function(){
-        window.location.href = '/sign_up.html'
+        users.renderSignUp();
       });
 
       $('#signOutNav').hide();
@@ -83,5 +83,5 @@ var users = (function(module){
 })(users || {});
 
 $(document).ready(function(){
-  users.setUpNav();
+  environment.setUpNav();
 });

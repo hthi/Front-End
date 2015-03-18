@@ -3,23 +3,26 @@
 
 var users = (function(module){
 
-  module.run = function() {
-    module.authToken = localStorage.getItem('authToken');
-
-    module.setupAjaxRequests();
-
-    $('#login-form').on('submit', users.submitLogin);
-  };
-
-  module.setupAjaxRequests = function() {
-    $.ajaxPrefilter(function( options ) {
-        options.headers = {};
-        options.headers['AUTHORIZATION'] = "Token token=" + module.authToken;
+  module.renderSignIn = function(){
+    var overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+    $('#signContainer').empty();
+    var template = Handlebars.compile($('#signInTemplate').html());
+    $('#signContainer').html(template({}));
+    $('#login-form').submit(function(event){
+      event.preventDefault();
+      module.submitLogin();
+    });
+    $('#cancel').click(function(){
+      module.removeModal();
     });
   };
 
-  module.submitLogin = function(event) {
-    event.preventDefault();
+  module.removeModal = function(){
+    $('#overlay').remove();
+    $('.modal').remove();
+  };
+
+  module.submitLogin = function() {
     $.ajax({
       url: module.user_path + '/sign_in',
       type: 'POST',
@@ -39,15 +42,11 @@ var users = (function(module){
 
   module.loginSuccess = function(userData) {
     localStorage.setItem('authToken', userData.token);
-    console.log('logged in!');
-    window.location.href = '/';
-  };
 
-  module.acceptFailure = function(error) {
-    if (error.status === 401) {
-        console.log('SEND TO LOGIN SCREEN');
-        window.location.href = '/sign_in.html';
-    }
+    console.log('logged in!');
+    module.findUser();
+    module.removeModal();
+    environment.setUpNav();
   };
 
   return module;
@@ -56,5 +55,4 @@ var users = (function(module){
 
 
 $(document).ready(function(){
-  users.run();
 });
