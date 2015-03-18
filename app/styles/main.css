@@ -27,6 +27,9 @@ nav {
 }
 
 #logo {
+  position: absolute;
+  top: -35px;
+  left: 10px;
   font-family: 'Luckiest Guy', cursive;
   font-size: 60px;
   color: white;
@@ -37,15 +40,17 @@ nav {
 
 nav ul {
   list-style-type: none;
+  top: 15px;
   right: 10px;
   position: absolute;
 }
 
 nav li {
   display: inline;
-  border: 1px solid black;
+  border-radius: 6px;
   padding: 15px;
   margin-right: 10px;
+  background-color: rgba(104, 194, 255, 1);
 }
 
 #tournamentDropNav {
@@ -65,7 +70,7 @@ nav li {
   z-index: 1000001;
   top: 25%;
   left: 25%;
-  background-color: red;
+  background-color: rgba(22, 131, 204, 1);
 }
 
 #overlay {
@@ -73,16 +78,23 @@ nav li {
   height: 100%;
   width: 100%;
   z-index: 1000000;
-  background-color: gray;
-  opacity: .3;
+  background-color: rgba(52, 97, 127, .3);
 }
 
 #openContainer {
+  width: 30%;
   position: absolute;
-  left: 0;
+  left: 250px;
+  top: 200px;
+  height: 70%;
+  overflow: scroll;
 }
 
 #closedContainer {
+  width: 30%;
   position: absolute;
-  right: 0;
+  right: 250px;
+  top: 200px;
+  height: 70%;
+  overflow: scroll;
 }

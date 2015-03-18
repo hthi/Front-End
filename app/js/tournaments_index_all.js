@@ -4,7 +4,7 @@
 var tournaments = (function(module){
 
   module.tournaments_page = function(option){
-    tournaments.$container.empty();
+    environment.emptyContainers();
     $.ajax({
       url: module.tournaments_path,
     })

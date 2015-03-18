@@ -88,6 +88,13 @@ var environment = (function(module){
     }).fail();
   };
 
+  module.emptyContainers = function(){
+    $('#container').empty();
+    $('#signContainer').empty();
+    $('#openContainer').empty();
+    $('#closedContainer').empty();
+  };
+
   return module
 
 })(users || {});
