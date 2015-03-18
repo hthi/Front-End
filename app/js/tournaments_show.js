@@ -99,8 +99,8 @@ var tournaments = (function(module){
 
   module.renderWinner = function(){
     module.active.winner = module.array[0];
-
-    if(users.user || user.user.id == module.active.user_id){
+    module.active.current = users.user;
+    if(users.user && users.user === module.active.user_id){
       var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
       $('#container').html(template({
         tournament: module.active
@@ -150,7 +150,8 @@ var tournaments = (function(module){
   };
 
   module.renderClosedTournament = function(response){
-    if (users.user && response.user_id === users.user.id){
+    response.current = users.user;
+    if (users.user && users.user === module.active.user_id){
       var template = Handlebars.compile($('#showClosedTournamentTemplate').html());
       $('#container').html(template({
         tournament: response
