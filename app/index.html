@@ -101,13 +101,19 @@
       <div id='user-tournaments'>
         <h3>Your Tournaments:</h3>
         <ul>
-          {{#each tournaments}}
-            <h3><span class='tournament' id='{{id}}'>{{question}}</span></h3>
-            <button class='delete' id='{{id}}'>Delete</button>
-            <li>Status: {{status}}</li>
-            <li>Number of Comments: {{comments.length}}</li>
-            <hr>
-          {{/each}}
+          {{#if tournaments}}
+            {{#each tournaments}}
+              <h3><span class='tournament' id='{{id}}'>{{question}}</span></h3>
+              <button class='delete' id='{{id}}'>Delete</button>
+              <li>Status: {{status}}</li>
+              <li>Number of Comments: {{comments.length}}</li>
+              <hr>
+            {{/each}}
+          {{else}}
+            <p id='empty'>You have not created any tournaments yet.</p>
+          {{/if}}
+
+
         </ul>
       </div>
     </script>
