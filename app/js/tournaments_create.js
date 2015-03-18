@@ -3,6 +3,13 @@
 
 var tournaments = (function(module){
 
+  module.each_slice = function(){
+    var arr = [1,2,3,4,5,6,7,8,9];
+    console.log(_.chain(arr).groupBy(function(element, index){
+      return Math.floor(index/n);
+    }).toArray().val());
+  };
+
   module.renderStuff = function(){
     $('#container').empty();
     var template = Handlebars.compile($('#newTournamentTemplate').html());

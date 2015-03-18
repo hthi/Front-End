@@ -81,6 +81,19 @@
       </div>
     </script>
 
+    <script type='text/x-handlebars-template' id='userTournamentsTemplate'>
+      <div id='user-tournaments'>
+        <ul>
+          {{#each tournaments}}
+            <h3><a href='?tournament={{id}}'>{{question}}</a></h3>
+            <button class='delete' id='{{id}}'>Delete</button>
+            <li>Status: {{status}}</li>
+            <li>Number of Comments: {{comments.length}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
+
     <script type='text/x-handlebars-template' id='newTournamentTemplate'>
         <div id='newTournament'>
           <form id='newTournamentForm'>
