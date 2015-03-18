@@ -13,13 +13,21 @@ var tournaments = (function(module){
     }).fail();
   };
 
-  module.render = function(response, option){
+  module.render = function(response, option, place){
     response = _.filter(response, function(tournament){ return tournament.status == option});
     console.log(response);
     var template = Handlebars.compile(module.$allTournamentsTemplate.html());
-    module.$container.html(template({
+
+    if (place){
+      place.html(template({
         tournaments: response
     }));
+    } else {
+      module.$container.html(template({
+        tournaments: response
+    }));
+    }
+
     $('.tournament').click(function(){
       tournaments.showTournament(this.id);
     });
