@@ -33,12 +33,16 @@ var environment = (function(module){
 
       $('#tournamentOpenIndexNav').show();
       $('#tournamentOpenIndexNav').click(function(){
-        tournaments.tournaments_page('open');
+        tournaments.tournaments_page('open', $('#openContainer'));
+        var template = Handlebars.compile($('#openDescriptionTemplate').html());
+        $('#closedContainer').html(template({}));
       });
 
       $('#tournamentClosedIndexNav').show();
       $('#tournamentClosedIndexNav').click(function(){
-        tournaments.tournaments_page('closed');
+        tournaments.tournaments_page('closed', $('#closedContainer'));
+        var template = Handlebars.compile($('#closedDescriptionTemplate').html());
+        $('#openContainer').html(template({}));
       });
 
 
@@ -67,12 +71,16 @@ var environment = (function(module){
 
       $('#tournamentOpenIndexNav').show();
       $('#tournamentOpenIndexNav').click(function(){
-        tournaments.tournaments_page('open');
+        tournaments.tournaments_page('open', $('#openContainer'));
+        var template = Handlebars.compile($('#openDescriptionTemplate').html());
+        $('#closedContainer').html(template({}));
       });
 
       $('#tournamentClosedIndexNav').show();
       $('#tournamentClosedIndexNav').click(function(){
-        tournaments.tournaments_page('closed');
+        tournaments.tournaments_page('closed', $('#closedContainer'));
+        var template = Handlebars.compile($('#closedDescriptionTemplate').html());
+        $('#openContainer').html(template({}));
       });
 
       $('#userNav').hide();

@@ -8,11 +8,11 @@ var users = (function(module){
     $('#signContainer').empty();
     var template = Handlebars.compile($('#signUpTemplate').html());
     $('#signContainer').html(template({}));
-    $('#registration-form').submit(function(event){
+    $('#signSubmit').click(function(event){
       event.preventDefault();
       module.submitRegistration();
     });
-    $('#cancel').click(function(){
+    $('#signCancel').click(function(){
       module.removeModal();
     });
   };

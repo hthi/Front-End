@@ -8,7 +8,7 @@ var users = (function(module){
     $('#signContainer').empty();
     var template = Handlebars.compile($('#signInTemplate').html());
     $('#signContainer').html(template({}));
-    $('#signInSubmit').click(function(event){
+    $('#signSubmit').click(function(event){
       event.preventDefault();
       module.submitLogin();
     });
