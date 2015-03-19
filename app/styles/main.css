@@ -286,3 +286,11 @@ h4 {
   background-color: green;
   height: 10px;
 }
+
+#closedMessage, #openMessage {
+  font-size: 20px;
+  margin: 10px;
+}
+#commentSubmit{
+  width: 70px;
+}
