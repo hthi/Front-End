@@ -16,7 +16,7 @@ var tournaments = (function(module){
     $('#closedContainer').html(template());
     $('#openContainer').html("<p id=openMessage> You can create a tournament here. Fill in the question you want to ask and upload you images. Once they are all in hit the submit button.<br>At the moment we can only upload .jpg files. Please check back later to see if other files types are supported.</p>");
     module.renderFileUpload();
-    $('#newTournamentForm').submit(module.submitTournament);
+    $('#submitNewTournament').click(module.submitTournament);
   };
 
   module.renderFileUpload = function(){
@@ -41,6 +41,7 @@ var tournaments = (function(module){
   module.prepareTournament = function(data){
     var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + data.key;
     module.image_array.push({'url': url});
+    module.uploaded = 0;
     module.safeToCreate();
   };
 
@@ -53,7 +54,6 @@ var tournaments = (function(module){
   };
 
   module.createTournament = function(){
-    module.createProgress();
     $.ajax({
       url: module.tournaments_path,
       type: 'POST',
@@ -73,7 +73,6 @@ var tournaments = (function(module){
   };
 
   module.createProgress = function(){
-    module.uploaded = 0;
     var overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
     $('#signContainer').empty();
     var template = Handlebars.compile($('#progressTemplate').html());
