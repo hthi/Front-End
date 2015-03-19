@@ -7,8 +7,9 @@ var images = (function(module){
     $.ajax({
       url: images.images_path + '/' + id + '/flag',
       type: 'POST'
-    }).done(
-    console.log('image flagged')).fail();
+    }).done(function(){
+      console.log('image flagged');
+    }).fail();
   };
 
   return module

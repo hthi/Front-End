@@ -14,7 +14,6 @@ var comments = (function(module){
         }
       }
     }).done(function(data){
-      console.log(data);
       tournaments.renderClosedTournament(data);
     }).fail();
   };

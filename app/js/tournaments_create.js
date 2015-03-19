@@ -5,9 +5,9 @@ var tournaments = (function(module){
 
   module.each_slice = function(){
     var arr = [1,2,3,4,5,6,7,8,9];
-    console.log(_.chain(arr).groupBy(function(element, index){
+    _.chain(arr).groupBy(function(element, index){
       return Math.floor(index/n);
-    }).toArray().val());
+    }).toArray().val();
   };
 
   module.renderStuff = function(){
@@ -45,7 +45,6 @@ var tournaments = (function(module){
 
   module.safeToCreate = function(){
     if (module.image_array.length === module.$files.length){
-      console.log('time to create');
       users.findUser(tournaments.createTournament);
     } else {
       console.log('not yet.');
@@ -53,6 +52,7 @@ var tournaments = (function(module){
   };
 
   module.createTournament = function(){
+    module.createProgress();
     $.ajax({
       url: module.tournaments_path,
       type: 'POST',
@@ -65,11 +65,28 @@ var tournaments = (function(module){
       }
     })
     .done(function(data) {
-      console.log(data);
     })
     .fail(function() {
       console.log("error");
     });
+  };
+
+  module.createProgress = function(){
+    module.uploaded = 0;
+    var overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
+    $('#signContainer').empty();
+    var template = Handlebars.compile($('#progressTemplate').html());
+    $('#signContainer').html(template({}));
+  };
+
+  module.updateProgress = function(){
+    module.uploaded += 1;
+    var percent = Math.floor((module.uploaded / module.image_array.length)*100);
+    $('#completed').text(percent + '%');
+    if ($('#completed').text() === '100%') {
+      users.removeModal();
+      $('#signContainer').empty();
+    }
   };
 
   return module;

@@ -23,7 +23,6 @@ var images = (function(module){
         }
       }
     }).done(function(data){
-      console.log(data);
     }).fail();
   };
 
@@ -42,7 +41,6 @@ var images = (function(module){
   };
 
   module.amazonAjax = function(data, file){
-    console.log(data);
     $.ajaxPrefilter(function(options){
       options.headers = {};
       options.headers['Accept'] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
@@ -61,7 +59,13 @@ var images = (function(module){
       data: fd,
       processData: false,
       contentType: false
-    }).done(function(){console.log('sent to amazon')});
+    }).done(function(){
+      console.log('sent to amazon');
+      tournaments.updateProgress();
+    }).fail(function(data){
+      console.log(data);
+      tournaments.updateProgress();
+    });
   }
 
   return module

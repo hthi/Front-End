@@ -21,11 +21,9 @@ var tournaments = (function(module){
     .done(function(response) {
       module.active = response;
       if (response.status === 'open'){
-        console.log('this is open');
         module.setup();
         module.runTournament();
       } else {
-        console.log('this is closed');
         module.renderClosedTournament(response);
       }
 
@@ -56,8 +54,6 @@ var tournaments = (function(module){
   };
 
   module.renderOpenTournament = function(){
-    console.log(module.array);
-    console.log(module.count);
     if(module.count === module.array.length || module.array[module.count].length < 2){
       module.runTournament();
 
@@ -103,8 +99,6 @@ var tournaments = (function(module){
     environment.emptyContainers();
     module.active.winner = module.array[0];
     module.active.current = users.user;
-    console.log(users.user);
-    console.log(module.active.user_id);
     if(users.user && users.user.id === module.active.user_id){
       var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
       $('#openContainer').html(template({
@@ -148,16 +142,12 @@ var tournaments = (function(module){
       type: 'POST'
     })
     .done(function(data) {
-      console.log(data);
       if(callback){
         callback();
       }
     })
     .fail(function() {
       console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
     });
 
   };
