@@ -37,7 +37,7 @@
       </div>
     </nav>
     <div id="container">
-      <h1>Vote for pictures.</h1>
+      <h1>Which pic is best? You decide.</h1>
     </div>
     <div id='openContainer'></div>
     <div id='closedContainer'></div>
@@ -88,6 +88,7 @@
 
     <script type='text/x-handlebars-template' id='allTournamentsTemplate'>
       <div id='all-tournaments'>
+        <h2>{{tournaments.status}}</h2>
         <ul>
           {{#each tournaments}}
             <h3><span class='tournament' id="{{id}}">{{question}}</span></h3>
@@ -139,48 +140,63 @@
     </script>
 
    <script type='text/x-handlebars-template' id='showClosedTournamentTemplate'>
-   <div id='closedTournament'>
-   <h3>{{tournament.question}} (Closed)</h3>
-   <h4>Winner:</h4>
-   <img src="{{tournament.popular.url}}" alt="winning picture">
-    </div>
-
-    <div id="comments_container">
-        {{#each tournament.comments}}
-        <p>{{user_id}}</p>
-        <p>{{body}}</p>
-        <div>
-        {{#if subcomment}}
-            <p>Subcomment: {{subcomment}}</p>
-            {{else}}
-            <textarea class='subcommentText'></textarea>
-            <input class='subcomment' id="{{id}}" type='submit'/>
-            {{/if}}
-        </div>
-        {{/each}}
-    </div>
-
-    {{#if tournament.current}}
-    <div id='newComment'>
-          <form id='newCommentForm'>
-            <label for='comment'>Comment</label>
-            <input type='text' id='comment'/>
-            <input type='submit'/>
-          </form>
-      </div>
-      {{else}}
-        <p>If you would like to add a comment, please sign in</p>
-      {{/if}}
-    </script>
-
-    <script type='text/x-handlebars-template' id='showVisitorClosedTournamentTemplate'>
      <div id='closedTournament'>
        <h3>{{tournament.question}} (Closed)</h3>
        <h4>Winner:</h4>
        <img src="{{tournament.popular.url}}" alt="winning picture">
       </div>
+    </script>
 
+    <script type='text/x-handlebars-template' id='showClosedCommentsTemplate'>
       <div id="comments_container">
+
+        {{#if tournament.current}}
+          <div id='newComment'>
+              <label for='comment'>Comment</label>
+              <textarea id='comment'></textarea>
+              <button id='commentSubmit' type='submit'>Submit</button>
+            <hr>
+          </div>
+        {{else}}
+          <p>If you would like to add a comment, please sign in</p>
+        {{/if}}
+        {{#each tournament.comments}}
+          <p>{{user_id}}</p>
+          <p>{{body}}</p>
+          <div>
+            {{#if subcomment}}
+              <p>Subcomment: {{subcomment}}</p>
+            {{else}}
+              <textarea class='subcommentText'></textarea>
+              <input class='subcomment' id="{{id}}" type='submit'/>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    </script>
+
+    <script type='text/x-handlebars-template' id='showVisitorClosedTournamentTemplate'>
+      <div id='closedTournament'>
+        <h3>{{tournament.question}} (Closed)</h3>
+        <h3>Winner:</h3>
+        <img src="{{tournament.popular.url}}" alt="winning picture">
+      </div>
+    </script>
+
+    <script type='text/x-handlebars-template' id='showVisitorClosedCommentsTemplate'>
+      <div id="comments_container">
+        {{#if tournament.current}}
+          <div id='newComment'>
+            <form id='newCommentForm'>
+              <label for='comment'>Comment</label>
+              <textarea id='comment'></textarea>
+              <button id='commentSubmit' type='submit'></button>
+            </form>
+            <hr>
+          </div>
+        {{else}}
+          <p>If you would like to add a comment, please sign in</p>
+        {{/if}}
         {{#each tournament.comments}}
           <p>{{user_id}}</p>
           <p>{{body}}</p>
@@ -191,18 +207,6 @@
           </div>
         {{/each}}
       </div>
-
-      {{#if tournament.current}}
-    <div id='newComment'>
-          <form id='newCommentForm'>
-            <label for='comment'>Comment</label>
-            <input type='text' id='comment'/>
-            <input type='submit'/>
-          </form>
-      </div>
-      {{else}}
-        <p>If you would like to add a comment, please sign in</p>
-      {{/if}}
     </script>
 
     <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
@@ -225,41 +229,41 @@
     </script>
 
   <script type='text/x-handlebars-template' id='showWinnerTournamentTemplate'>
-     <div id='winnerTournament'>
-       <h3>{{tournament.question}}</h3>
-       <h4>Your Pixelection:</h4>
-       <img src="{{tournament.winner.url}}" alt="your winning picture">
-       <h4>Community's Pixelection:</h4>
-       <img src="{{tournament.popular.url}}" alt="community's winning picture">
-      </div>
+    <div id='winnerTournament'>
+      <h3>{{tournament.question}}</h3>
+      <h4>Your Pixelection:</h4>
+      <img src="{{tournament.winner.url}}" alt="your winning picture">
+      <h4>Community's Pixelection:</h4>
+      <img src="{{tournament.popular.url}}" alt="community's winning picture">
+    </div>
+  </script>
 
-      <div id="comments_container">
-        {{#each tournament.comments}}
-          <p>User Id: {{user_id}}</p>
-          <p>Comment: {{body}}</p>
-          <div>
-            {{#if subcomment}}
-            <p>Subcomment: {{subcomment}}</p>
-            {{else}}
-            <textarea class='subcommentText'></textarea>
-            <input class='subcomment' id="{{id}}" type='submit'/>
-            {{/if}}
-          </div>
-        {{/each}}
-      </div>
-
-     {{#if tournament.current}}
-    <div id='newComment'>
-          <form id='newCommentForm'>
+  <script type='text/x-handlebars-template' id='showWinnerCommentsTemplate'>
+    <div id="comments_container">
+      {{#if tournament.current}}
+        <div id='newComment'>
             <label for='comment'>Comment</label>
-            <input type='text' id='comment'/>
-            <input type='submit'/>
-          </form>
-      </div>
+            <textarea id='comment'/></textarea>
+            <button id='commentSubmit' type='submit'>Submit</button>
+          <hr>
+        </div>
       {{else}}
         <p>If you would like to add a comment, please sign in</p>
       {{/if}}
-    </script>
+      {{#each tournament.comments}}
+        <p>User Id: {{user_id}}</p>
+        <p>Comment: {{body}}</p>
+        <div>
+          {{#if subcomment}}
+            <p>Subcomment: {{subcomment}}</p>
+          {{else}}
+            <textarea class='subcommentText'></textarea>
+            <input class='subcomment' id="{{id}}" type='submit'/>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </script>
 
     <script type='text/x-handlebars-template' id='showVisitorWinnerTournamentTemplate'>
      <div id='winnerTournament'>
@@ -268,53 +272,56 @@
        <img src="{{tournament.winner.url}}" alt="your winning picture">
        <h4>Community's Pixelection:</h4>
        <img src="{{tournament.popular.url}}" alt="community's winning picture">
-      </div>
+       <hr>
+    </div>
+  </script>
 
-      <div id="comments_container">
-        {{#each tournament.comments}}
-          <p>User Id: {{user_id}}</p>
-          <p>Comment: {{body}}</p>
-          <div>
-            {{#if subcomment}}
-            <p>Subcomment: {{subcomment}}</p>
-            {{/if}}
-            }
-          </div>
-        {{/each}}
-      </div>
+  <script type='text/x-handlebars-template' id='showVisitorWinnerCommentsTemplate'>
+    <div id="comments_container">
 
-     {{#if tournament.current}}
-    <div id='newComment'>
-          <form id='newCommentForm'>
+      {{#if tournament.current}}
+        <div id='newComment'>
             <label for='comment'>Comment</label>
-            <input type='text' id='comment'/>
-            <input type='submit'/>
-          </form>
-      </div>
+            <textarea id='comment'/></textarea>
+            <button id='commentSubmit' type='submit'>Submit</button>
+        </div>
       {{else}}
         <p>If you would like to add a comment, please sign in</p>
       {{/if}}
-    </script>
+      {{#each tournament.comments}}
+        <p>User Id: {{user_id}}</p>
+        <p>Comment: {{body}}</p>
+        <div>
+          {{#if subcomment}}
+            <p>Subcomment: {{subcomment}}</p>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </script>
 
     <script type='text/x-handlebars-template' id='signInTemplate'>
-      <section class="modal">
+      <section class="modal" id='signInModal'>
         <header>
           <h1>Login to Pixelect</h1>
         </header>
-        <form id="login-form">
-
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" />
+          <div id='signInName'>
+            <label class='signLabel' for="name">Name</label>
           </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" />
+          <div>
+            <input type="text" class='signField' id="name" />
           </div>
-          <input type='submit' />
-         </form>
-         <button id='cancel'>cancel</button>
+          <div id='signInPassword'>
+            <label class='signLabel' for="password">Password</label>
+          </div>
+          <div>
+            <input type="password" class='signField' id="password" />
+          </div>
+        </div>
+        <div id='signButtons'>
+          <button id='signInSubmit'>Sign In</button>
+          <button id='signCancel'>Cancel</button>
+        </div>
       </section>
     </script>
 

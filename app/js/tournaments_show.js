@@ -15,17 +15,17 @@ var tournaments = (function(module){
     };
 
   module.getTournament = function(id){
-    console.log(id);
     $.ajax({
       url: module.tournaments_path + "/" + id.toString(),
     })
     .done(function(response) {
       module.active = response;
       if (response.status === 'open'){
-        // module.renderOpenTournament(response);
+        console.log('this is open');
         module.setup();
         module.runTournament();
       } else {
+        console.log('this is closed');
         module.renderClosedTournament(response);
       }
 
@@ -100,14 +100,21 @@ var tournaments = (function(module){
   };
 
   module.renderWinner = function(){
+    environment.emptyContainers();
     module.active.winner = module.array[0];
     module.active.current = users.user;
-    if(users.user && users.user === module.active.user_id){
+    console.log(users.user);
+    console.log(module.active.user_id);
+    if(users.user && users.user.id === module.active.user_id){
       var template = Handlebars.compile($('#showWinnerTournamentTemplate').html());
-      $('#container').html(template({
+      $('#openContainer').html(template({
         tournament: module.active
       }));
-      $('#newCommentForm').submit(function(e){
+      var template2 = Handlebars.compile($('#showWinnerCommentsTemplate').html());
+      $('#closedContainer').html(template2({
+        tournament: module.active
+      }));
+      $('#commentSubmit').click(function(e){
         e.preventDefault();
         comments.createComment(module.active);
       });
@@ -116,10 +123,14 @@ var tournaments = (function(module){
       });
     } else {
       var template = Handlebars.compile($('#showVisitorWinnerTournamentTemplate').html());
-      $('#container').html(template({
+      $('#openContainer').html(template({
         tournament: module.active
       }));
-      $('#newCommentForm').submit(function(e){
+      var template2 = Handlebars.compile($('#showVisitorWinnerCommentsTemplate').html());
+      $('#closedContainer').html(template2({
+        tournament: module.active
+      }));
+      $('#commentSubmit').click(function(e){
         e.preventDefault();
         comments.createComment(module.active);
       });
@@ -153,9 +164,13 @@ var tournaments = (function(module){
 
   module.renderClosedTournament = function(response){
     response.current = users.user;
-    if (users.user && users.user === module.active.user_id){
+    if (users.user && users.user.id === module.active.user_id){
       var template = Handlebars.compile($('#showClosedTournamentTemplate').html());
-      $('#container').html(template({
+      $('#openContainer').html(template({
+        tournament: response
+      }));
+      var template2 = Handlebars.compile($('#showClosedCommentsTemplate').html());
+      $('#closedContainer').html(template2({
         tournament: response
       }));
       $('.subcomment').click(function(){
@@ -163,12 +178,16 @@ var tournaments = (function(module){
       });
     } else {
       var template = Handlebars.compile($('#showVisitorClosedTournamentTemplate').html());
-      $('#container').html(template({
+      $('#openContainer').html(template({
+        tournament: response
+      }));
+      var template2 = Handlebars.compile($('#showVisitorClosedCommentsTemplate').html());
+      $('#closedContainer').html(template2({
         tournament: response
       }));
     }
 
-    $('#newCommentForm').submit(function(e){
+    $('#commentSubmit').click(function(e){
       e.preventDefault();
       comments.createComment(response);
     });
