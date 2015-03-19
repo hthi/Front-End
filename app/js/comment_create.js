@@ -25,7 +25,7 @@ var comments = (function(module){
       type: 'POST',
       data: {
         comment: {
-          body: $('#comment').val(),
+          body: $('#comment').val() + '--' + users.user.name,
           user_id: users.user.id
         }
       }
