@@ -3,13 +3,13 @@
 
 var tournaments = (function(module){
 
-  module.tournaments_page = function(option){
+  module.tournaments_page = function(option, place){
     environment.emptyContainers();
     $.ajax({
       url: module.tournaments_path,
     })
     .done(function(data){
-      module.render(data, option);
+      module.render(data, option, place);
     }).fail();
   };
 

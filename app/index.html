@@ -141,7 +141,7 @@
 
    <script type='text/x-handlebars-template' id='showClosedTournamentTemplate'>
      <div id='closedTournament'>
-       <h3>{{tournament.question}} (Closed)</h3>
+       <h3 id='winnerTag'>{{tournament.question}} (Closed)</h3>
        <h4>Winner:</h4>
        <img src="{{tournament.popular.url}}" alt="winning picture">
       </div>
@@ -177,7 +177,7 @@
 
     <script type='text/x-handlebars-template' id='showVisitorClosedTournamentTemplate'>
       <div id='closedTournament'>
-        <h3>{{tournament.question}} (Closed)</h3>
+        <h3 id='winnerTag'>{{tournament.question}} (Closed)</h3>
         <h3>Winner:</h3>
         <img src="{{tournament.popular.url}}" alt="winning picture">
       </div>
@@ -230,7 +230,7 @@
 
   <script type='text/x-handlebars-template' id='showWinnerTournamentTemplate'>
     <div id='winnerTournament'>
-      <h3>{{tournament.question}}</h3>
+      <h3 id='winnerTag'>{{tournament.question}}</h3>
       <h4>Your Pixelection:</h4>
       <img src="{{tournament.winner.url}}" alt="your winning picture">
       <h4>Community's Pixelection:</h4>
@@ -267,7 +267,7 @@
 
     <script type='text/x-handlebars-template' id='showVisitorWinnerTournamentTemplate'>
      <div id='winnerTournament'>
-       <h3>{{tournament.question}}</h3>
+       <h3 id='winnerTag'>{{tournament.question}}</h3>
        <h4>Your Pixelection:</h4>
        <img src="{{tournament.winner.url}}" alt="your winning picture">
        <h4>Community's Pixelection:</h4>
@@ -319,7 +319,7 @@
           </div>
         </div>
         <div id='signButtons'>
-          <button id='signInSubmit'>Sign In</button>
+          <button id='signSubmit'>Sign In</button>
           <button id='signCancel'>Cancel</button>
         </div>
       </section>
@@ -330,28 +330,36 @@
         <header>
           <h1>Register for Pixelect</h1>
         </header>
-        <form id="registration-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" id="email" />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" />
-          </div>
-          <div class="form-group">
-            <label for="password-confirmation">Password Confirmation</label>
-            <input type="password" id="password-confirmation" />
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Register" class="submit_btn" />
-          </div>
-        </form>
-        <button id='cancel'>cancel</button>
+        <div class='modalLabel'>
+          <label class='signLabel' for="name">Name</label>
+        </div>
+        <div>
+          <input class='signField' type="text" id="name" />
+        </div>
+        <div class='modalLabel'>
+          <label class='signLabel' for="email">Email</label>
+        </div>
+        <div>
+          <input class='signField' type="text" id="email" />
+        </div>
+        <div class='modalLabel'>
+          <label class='signLabel' for="password">Password</label>
+        </div>
+        <div>
+          <input class='signField' type="password" id="password" />
+        </div>
+        <div class='modalLabel'>
+          <label class='signLabel' for="password-confirmation">Password Confirmation</label>
+        </div>
+        <div>
+          <input class='signField' type="password" id="password-confirmation" />
+        </div>
+        <div>
+        </div>
+        <div id='signButtons'>
+          <button id='signSubmit'>Sign Up</button>
+          <button id='signCancel'>Cancel</button>
+        </div>
       </section>
     </script>
 
@@ -364,6 +372,14 @@
           <button id='cancel'>No</button>
         <div>
       </section>
+    </script>
+
+    <script type='text/x-handlebars-template' id='openDescriptionTemplate'>
+      <p id='openMessage'>bjnsdbdsnbd;bfndjsb;sd</p>
+    </script>
+
+    <script type='text/x-handlebars-template' id='closedDescriptionTemplate'>
+      <p id='closedMessage'>snvsjvnsdjvnsdjvnasfbs</p>
     </script>
 
 
