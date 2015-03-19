@@ -15,7 +15,8 @@ a {
 }
 
 img {
-  max-width: 500px;
+  width: 100%;
+  border: 2px solid black;
 }
 
 ul {
@@ -42,7 +43,7 @@ nav {
 
 #logo {
   position: absolute;
-  top: -35px;
+  top: -25px;
   left: 10px;
   font-family: 'Luckiest Guy', cursive;
   font-size: 60px;
@@ -92,11 +93,11 @@ nav li:hover {
 .modal {
   border: 2px solid black;
   border-radius: 6px;
-  width: 50%;
+  min-width: 30%;
   position: absolute;
   z-index: 1000001;
   top: 25%;
-  left: 25%;
+  left: 35%;
   background-color: rgba(22, 131, 204, 1);
   min-height: 120px;
 }
@@ -134,6 +135,8 @@ nav li:hover {
 }
 h1 {
   text-align: center;
+  margin-top: 40px;
+  font-size: 40px;
 }
 
 .tournament:hover {
@@ -146,7 +149,7 @@ h1 {
 }
 h2 {
   margin-top: 5px;
-  font-size: 50px;
+  font-size: 30px;
   margin-bottom: 1px;
   text-align: center;
 }
@@ -209,6 +212,49 @@ div#rightImage {
   height: 30px;
   margin-top: 20px;
 }
+
 #submitNewTournament:hover {
   background: green;
+}
+
+#commentSubmit {
+  float: right;
+  width: 50px;
+  height: 30px;
+}
+#commentSubmit:hover{
+  background-color: green;
+}
+
+.signField {
+  width: 90%;
+  margin: 0 0 0 5%;
+  font-size: 20px;
+}
+
+.signLabel {
+  margin: 0 0 0 5%;
+  font-size: 20px;
+}
+#signInSubmit, #signCancel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+#signInSubmit {
+  margin-right: 10px;
+}
+
+#signButtons{
+  margin: 10px auto 10px auto;
+  width: 220px;
+}
+
+#signInPassword {
+  margin-top: 15px;
+}
+#signInName {
+  margin-top: -20px;
 }

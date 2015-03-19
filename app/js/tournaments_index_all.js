@@ -13,9 +13,12 @@ var tournaments = (function(module){
     }).fail();
   };
 
+  module.capitalize = function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
   module.render = function(response, option, place){
     response = _.filter(response, function(tournament){ return tournament.status == option});
-    console.log(response);
+    response.status = module.capitalize(option) + ' Tournaments';
     var template = Handlebars.compile(module.$allTournamentsTemplate.html());
 
     if (place){
