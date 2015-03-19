@@ -41,7 +41,6 @@ var tournaments = (function(module){
   module.prepareTournament = function(data){
     var url = 'https://s3.amazonaws.com/my-pixelect-bucket/' + data.key;
     module.image_array.push({'url': url});
-    module.uploaded = 0;
     module.safeToCreate();
   };
 
@@ -54,6 +53,7 @@ var tournaments = (function(module){
   };
 
   module.createTournament = function(){
+    module.createProgress();
     $.ajax({
       url: module.tournaments_path,
       type: 'POST',
@@ -73,6 +73,7 @@ var tournaments = (function(module){
   };
 
   module.createProgress = function(){
+    module.uploaded = 0;
     var overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
     $('#signContainer').empty();
     var template = Handlebars.compile($('#progressTemplate').html());
