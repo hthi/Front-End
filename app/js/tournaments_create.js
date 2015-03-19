@@ -13,7 +13,8 @@ var tournaments = (function(module){
   module.renderStuff = function(){
     environment.emptyContainers();
     var template = Handlebars.compile($('#newTournamentTemplate').html());
-    $('#container').html(template());
+    $('#closedContainer').html(template());
+    $('#openContainer').html("<p id=openMessage> You can create a tournament here. Fill in the question you want to ask and upload you images. Once they are all in hit the submit button.<br>At the moment we can only upload .jpg files. Please check back later to see if other files types are supported.</p>");
     module.renderFileUpload();
     $('#newTournamentForm').submit(module.submitTournament);
   };
@@ -80,12 +81,13 @@ var tournaments = (function(module){
   };
 
   module.updateProgress = function(){
-    module.uploaded += 1;
     var percent = Math.floor((module.uploaded / module.image_array.length)*100);
     $('#completed').text(percent + '%');
+    $('#progressBar').width(percent);
     if ($('#completed').text() === '100%') {
       users.removeModal();
       $('#signContainer').empty();
+      users.show_user_page();
     }
   };
 
@@ -95,6 +97,4 @@ var tournaments = (function(module){
 
 
 $(document).ready(function(){
-  $('#newTournamentNav').click(tournaments.renderStuff);
-  // $('#newTournamentForm').submit(tournaments.submitTournament);
 });

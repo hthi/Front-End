@@ -274,3 +274,23 @@ h4 {
   margin-top: 10px;
   font-size: 20px;
 }
+
+#progress {
+  border: 1px solid black;
+  border-radius: 6px;
+  width: 100px;
+  margin: 20px auto;
+  height: 10px;
+}
+#progressBar {
+  background-color: green;
+  height: 10px;
+}
+
+#closedMessage, #openMessage {
+  font-size: 20px;
+  margin: 10px;
+}
+#commentSubmit{
+  width: 70px;
+}

@@ -36,8 +36,8 @@
         </ul>
       </div>
     </nav>
+    <header><h1>Which pic is best? You decide.</h1></header>
     <div id="container">
-      <h1>Which pic is best? You decide.</h1>
     </div>
     <div id='openContainer'></div>
     <div id='closedContainer'></div>
@@ -127,7 +127,7 @@
             <input type='text' id='question'/>
             <ul id='fileList'></ul>
             <div id='uploadContainer'></div>
-            <button id='submitNewTournament'>Submit</button>
+            <button id='submitNewTournament'>Create</button>
         </div>
     </script>
 
@@ -154,21 +154,20 @@
           <div id='newComment'>
               <label for='comment'>Comment</label>
               <textarea id='comment'></textarea>
-              <button id='commentSubmit' type='submit'>Submit</button>
+              <button id='commentSubmit'>Comment</button>
             <hr>
           </div>
         {{else}}
           <p>If you would like to add a comment, please sign in</p>
         {{/if}}
         {{#each tournament.comments}}
-          <p>{{user_id}}</p>
           <p>{{body}}</p>
           <div>
             {{#if subcomment}}
               <p>Subcomment: {{subcomment}}</p>
             {{else}}
               <textarea class='subcommentText'></textarea>
-              <input class='subcomment' id="{{id}}" type='submit'/>
+              <button class='subcomment' id="{{id}}" type='submit'>Respond</button>
             {{/if}}
           </div>
         {{/each}}
@@ -190,7 +189,7 @@
             <form id='newCommentForm'>
               <label for='comment'>Comment</label>
               <textarea id='comment'></textarea>
-              <button id='commentSubmit' type='submit'></button>
+              <button id='commentSubmit'>Comment</button>
             </form>
             <hr>
           </div>
@@ -198,7 +197,6 @@
           <p>If you would like to add a comment, please sign in</p>
         {{/if}}
         {{#each tournament.comments}}
-          <p>{{user_id}}</p>
           <p>{{body}}</p>
           <div>
             {{#if subcomment}}
@@ -209,22 +207,17 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars-template" id="showOpenTournamentTemplate">
-      <div id="openTournament">
-        <h3>{{tournament.question}}</h3>
+    <script type="text/x-handlebars-template" id="showLeftTemplate">
+      <div class="imageContainer" id="leftImage">
+        <img src="{{tournament.leftImage.url}}" class="activePick" />
+        <button class='leftFlag' id='{{tournament.leftImage.id}}'>flag image</button>
+      </div>
+    </script>
 
-          <div class="imageContainer" id="leftImage">
-            <img src="{{tournament.leftImage.url}}" class="activePick" />
-            <button class='leftFlag' id='{{tournament.leftImage.id}}'>flag image</button>
-          </div>
-
-              <h4>or</h4>
-
-          <div class="imageContainer" id="rightImage">
-            <img src="{{tournament.rightImage.url}}" class="activePick" />
-            <button class='rightFlag' id='{{tournament.rightImage.id}}'>flag image</button>
-          </div>
-
+    <script type="text/x-handlebars-template" id="showRightTemplate">
+      <div class="imageContainer" id="rightImage">
+        <img src="{{tournament.rightImage.url}}" class="activePick" />
+        <button class='rightFlag' id='{{tournament.rightImage.id}}'>flag image</button>
       </div>
     </script>
 
@@ -244,21 +237,20 @@
         <div id='newComment'>
             <label for='comment'>Comment</label>
             <textarea id='comment'/></textarea>
-            <button id='commentSubmit' type='submit'>Submit</button>
+            <button id='commentSubmit'>Comment</button>
           <hr>
         </div>
       {{else}}
         <p>If you would like to add a comment, please sign in</p>
       {{/if}}
       {{#each tournament.comments}}
-        <p>User Id: {{user_id}}</p>
         <p>Comment: {{body}}</p>
         <div>
           {{#if subcomment}}
             <p>Subcomment: {{subcomment}}</p>
           {{else}}
             <textarea class='subcommentText'></textarea>
-            <input class='subcomment' id="{{id}}" type='submit'/>
+            <button class='subcomment' id="{{id}}">Respond</button>
           {{/if}}
         </div>
       {{/each}}
@@ -283,13 +275,12 @@
         <div id='newComment'>
             <label for='comment'>Comment</label>
             <textarea id='comment'/></textarea>
-            <button id='commentSubmit' type='submit'>Submit</button>
+            <button id='commentSubmit'>Comment</button>
         </div>
       {{else}}
         <p>If you would like to add a comment, please sign in</p>
       {{/if}}
       {{#each tournament.comments}}
-        <p>User Id: {{user_id}}</p>
         <p>Comment: {{body}}</p>
         <div>
           {{#if subcomment}}
@@ -375,15 +366,20 @@
     </script>
 
     <script type='text/x-handlebars-template' id='openDescriptionTemplate'>
-      <p id='openMessage'>bjnsdbdsnbd;bfndjsb;sd</p>
+      <p id='openMessage'>These are tournaments that you can vote on. They will stay open for 24 hours. Pick between pictures until you answer the best one. When you get to the end you can see the picture the community liked best. You will be able to share your thoughts there as well. Once a tournament closes you will still be able to comment, but you won't be able to vote.</p>
     </script>
 
     <script type='text/x-handlebars-template' id='closedDescriptionTemplate'>
-      <p id='closedMessage'>snvsjvnsdjvnsdjvnasfbs</p>
+      <p id='closedMessage'>These are tournaments that were created over 24 hours ago. You won't be able to vote, but you can see what picture was most popular and share your thoughts.</p>
     </script>
 
     <script type='text/x-handlebars-template' id='progressTemplate'>
-      <p id='completed'>0%</p>
+      <section class='modal'>
+        <h1 id='completed'>0%</h1>
+        <div id='progress'>
+          <div id='progressBar'></div>
+        </div>
+      </section>
     </script>
 
 

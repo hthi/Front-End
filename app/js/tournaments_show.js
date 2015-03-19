@@ -43,6 +43,7 @@ var tournaments = (function(module){
     module.count = 0;
     module.array = _.flatten(module.array);
     module.array = _.shuffle(module.array);
+    $('header h1').text(module.active.question)
 
     if(module.array.length === 1){
       module.updateWinner(module.renderWinner);
@@ -65,8 +66,12 @@ var tournaments = (function(module){
 
   module.renderPairing = function(){
     var activeObject = {question: module.active.question, leftImage: module.array[module.count][0], rightImage: module.array[module.count][1]};
-    var template = Handlebars.compile($('#showOpenTournamentTemplate').html());
-    $('#container').html(template({
+    var template = Handlebars.compile($('#showLeftTemplate').html());
+    $('#openContainer').html(template({
+      tournament: activeObject
+    }));
+    var template = Handlebars.compile($('#showRightTemplate').html());
+    $('#closedContainer').html(template({
       tournament: activeObject
     }));
     $('#leftImage').click(function(){
@@ -95,8 +100,11 @@ var tournaments = (function(module){
     });
   };
 
-  module.renderWinner = function(){
+  module.renderWinner = function(data){
     environment.emptyContainers();
+    if(data){
+      module.active = data;
+    }
     module.active.winner = module.array[0];
     module.active.current = users.user;
     if(users.user && users.user.id === module.active.user_id){
@@ -110,7 +118,7 @@ var tournaments = (function(module){
       }));
       $('#commentSubmit').click(function(e){
         e.preventDefault();
-        comments.createComment(module.active);
+        comments.createWinnerComment(module.active);
       });
       $('.subcomment').click(function(){
         comments.addSubcomment(this);
@@ -126,7 +134,7 @@ var tournaments = (function(module){
       }));
       $('#commentSubmit').click(function(e){
         e.preventDefault();
-        comments.createComment(module.active);
+        comments.createWinnerComment(module.active);
       });
       $('.subcomment').click(function(){
         comments.addSubcomment(this);

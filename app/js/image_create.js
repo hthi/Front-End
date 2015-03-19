@@ -61,9 +61,12 @@ var images = (function(module){
       contentType: false
     }).done(function(){
       console.log('sent to amazon');
+      tournaments.uploaded += 1;
+      console.log(tournaments.uploaded);
       tournaments.updateProgress();
     }).fail(function(data){
       console.log(data);
+      tournaments.uploaded += 1;
       tournaments.updateProgress();
     });
   }

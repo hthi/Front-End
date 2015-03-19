@@ -33,9 +33,9 @@ var environment = (function(module){
 
       $('#tournamentOpenIndexNav').show();
       $('#tournamentOpenIndexNav').click(function(){
-        tournaments.tournaments_page('open', $('#openContainer'));
+        tournaments.tournaments_page('open', $('#closedContainer'));
         var template = Handlebars.compile($('#openDescriptionTemplate').html());
-        $('#closedContainer').html(template({}));
+        $('#openContainer').html(template({}));
       });
 
       $('#tournamentClosedIndexNav').show();
@@ -71,9 +71,9 @@ var environment = (function(module){
 
       $('#tournamentOpenIndexNav').show();
       $('#tournamentOpenIndexNav').click(function(){
-        tournaments.tournaments_page('open', $('#openContainer'));
+        tournaments.tournaments_page('open', $('#closedContainer'));
         var template = Handlebars.compile($('#openDescriptionTemplate').html());
-        $('#closedContainer').html(template({}));
+        $('#openContainer').html(template({}));
       });
 
       $('#tournamentClosedIndexNav').show();
@@ -104,6 +104,7 @@ var environment = (function(module){
     $('#signContainer').empty();
     $('#openContainer').empty();
     $('#closedContainer').empty();
+    $('header h1').empty();
   };
 
   return module
