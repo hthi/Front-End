@@ -80,12 +80,13 @@ var tournaments = (function(module){
   };
 
   module.updateProgress = function(){
-    module.uploaded += 1;
     var percent = Math.floor((module.uploaded / module.image_array.length)*100);
     $('#completed').text(percent + '%');
+    $('#progressBar').width(percent);
     if ($('#completed').text() === '100%') {
       users.removeModal();
       $('#signContainer').empty();
+      users.show_user_page();
     }
   };
 
